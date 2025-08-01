@@ -1,11 +1,12 @@
 import './App.css'
-import CommonButton from './components/CommonButton';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBar from './components/NavBar';
 
 function App() {
 
   return (
     <>
-      <CommonButton backgroundColor="green" color="white" text="Test" padding="5px" />
+      <NavBar />
     </>
   )
 }
