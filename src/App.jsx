@@ -10,7 +10,7 @@ function App() {
       <NavBar />
       <ItemListContainer
         text='Bienvenido a Retro Futbol! Tu mejor pagina para comprar camisetas de tus equipos favoritos'
-        backgroundColor='#rgb(7 13 126);'
+        backgroundColor='#030382'
         color='white'
         height='50px'
         padding='5px'
