@@ -8,13 +8,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <ItemListContainer
-        text='Bienvenido a Retro Futbol! Tu mejor pagina para comprar camisetas de tus equipos favoritos'
-        backgroundColor='#030382'
-        color='white'
-        height='50px'
-        padding='5px'
-        margin='5px' />
+      <ItemListContainer />
     </>
   )
 }

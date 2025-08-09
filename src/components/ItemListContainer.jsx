@@ -1,20 +1,25 @@
-const ItemListContainer = (props) => {
+import { useEffect, useState } from 'react'
+import { getProductos } from '../mocks/AsyncMock'
+import ItemList from './ItemList'
 
-    const styles = {
-        'backgroundColor' : props.backgroundColor,
-        'color' : props.color,
-        'padding' : props.padding,
-        'margin' : props.margin,
-        'width' : props.width,
-        'height' : props.height,
-        'display': 'flex',
-        'alignItems' : 'center',
-        'justifyContent' : 'center'
-    }
+const ItemListContainer = () => {
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        getProductos()
+            .then((res) => { setData(res) })
+            .catch((error) => { console.error(error) })
+            .finally(() => {
+                console.log("Finalizó el proceso de carga");
+            });
+    }, [])
 
     return (
-        <div style={styles}>
-            <h5>{props.text}</h5>
+        <div className="p-3">
+            <h5 style={{ color: '#030382', height: '30px' }}>
+                Bienvenido a Retro Futbol! Tu mejor pagina para comprar camisetas de tus equipos favoritos</h5>
+
+            <ItemList dataList={data} />
         </div>
     )
 }
