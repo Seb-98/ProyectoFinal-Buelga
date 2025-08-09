@@ -1,23 +1,46 @@
 import { Button, Card } from 'react-bootstrap';
+import { useState } from 'react';
 
 function ItemCamiseta({ dataCamiseta }) {
+    const [boxShadow, setBoxShadow] = useState('');
+
     const precioInicial = dataCamiseta.precio;
     const precioFinal = dataCamiseta.oferta ? precioInicial * dataCamiseta.porcDesc : precioInicial;
 
+    const handleHover = () => {
+        setBoxShadow('0 8px 20px rgba(0, 0, 0, 0.55)');
+    }
+
+    const handleLeave = () => {
+        setBoxShadow('');
+    };
+
     return (
-        <Card style={{ width: '15rem' }}>
+        <Card
+            style={{
+                width: '15rem',
+                boxShadow: boxShadow,
+                transition: 'box-shadow 0.3s ease, transform 0.3s ease',
+            }}
+            onMouseOver={handleHover}
+            onMouseLeave={handleLeave}>
             <Card.Img variant="top" src={dataCamiseta.img} />
             <Card.Body>
                 <Card.Title>{dataCamiseta.nombre}</Card.Title>
 
                 <Card.Text className="mb-1">
-                    Precio:<span>${precioFinal}</span>
+                    Precio: <span>${precioFinal}</span>
                 </Card.Text>
                 <Card.Text className="mb-1">
-                    Temporada:{dataCamiseta.temporada}
+                    Temporada: {dataCamiseta.temporada}
+                </Card.Text>
+                <Card.Text className="mb-1 categoryDescription">
+                    {dataCamiseta.categoria}
                 </Card.Text>
 
-                <Button variant="success">Comprar</Button>
+                <div className="d-flex justify-content-center mt-3">
+                    <Button variant="success" className="">Comprar</Button>
+                </div>
             </Card.Body>
         </Card>
     );
