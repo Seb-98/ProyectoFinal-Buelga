@@ -18,7 +18,7 @@ function ItemCamiseta({ dataCamiseta }) {
     return (
         <Card
             style={{
-                width: '15rem',
+                width: '12rem',
                 boxShadow: boxShadow,
                 transition: 'box-shadow 0.3s ease, transform 0.3s ease',
             }}
@@ -39,7 +39,7 @@ function ItemCamiseta({ dataCamiseta }) {
                 </Card.Text>
 
                 <div className="d-flex justify-content-center mt-3">
-                    <Button variant="success" className="">Comprar</Button>
+                    <Button variant="dark" className="">Comprar</Button>
                 </div>
             </Card.Body>
         </Card>

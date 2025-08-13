@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getProductos } from '../mocks/AsyncMock'
 import ItemList from './ItemList'
 import '../css/styleListContainer.css'
+import {Container} from 'react-bootstrap';
 
 const ItemListContainer = () => {
     const [data, setData] = useState([])
@@ -16,15 +17,9 @@ const ItemListContainer = () => {
     }, [])
 
     return (
-        <div className="p-3">
-            <div className="d-flex justify-content-center pb-3">
-                <h5 className="titleListContainer">
-                    Bienvenido a GoalStreet! Tu mejor pagina para comprar camisetas de tus equipos favoritos
-                </h5>
-            </div>
-
+        <Container>
             <ItemList dataList={data} />
-        </div>
+        </Container>
     )
 }
 

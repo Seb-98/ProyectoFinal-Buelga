@@ -47,3 +47,17 @@ export const getProductos = () => {
         }, 2000);
     })
 }
+
+// export const getProductos = () => {
+
+//     return fetch('src/dataStock.json')
+//         .then((response) => {
+//             if (!response.ok) {
+//                 throw new Error('Error en la solicitud');
+//             }
+//             return response.json();
+//         })
+//         .catch((error) => {
+//             console.error('Error:', error);
+//         });
+// };

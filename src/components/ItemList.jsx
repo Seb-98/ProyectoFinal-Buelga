@@ -3,7 +3,7 @@ import ItemCamiseta from "./ItemCamiseta";
 const ItemList = ({ dataList }) => {
 
     return (
-        <div className="d-flex justify-content-start gap-5">
+        <div className="d-flex flex-wrap justify-content-start gap-4">
             {dataList.map((item) => (
                 <ItemCamiseta dataCamiseta={item} key={item.id} />
             ))}
