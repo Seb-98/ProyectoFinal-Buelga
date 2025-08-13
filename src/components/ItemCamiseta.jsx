@@ -18,18 +18,26 @@ function ItemCamiseta({ dataCamiseta }) {
     return (
         <Card
             style={{
-                width: '12rem',
+                width: '15rem',
                 boxShadow: boxShadow,
                 transition: 'box-shadow 0.3s ease, transform 0.3s ease',
             }}
             onMouseOver={handleHover}
             onMouseLeave={handleLeave}>
-            <Card.Img variant="top" src={dataCamiseta.img} />
+            <Card.Img variant="top" src={dataCamiseta.img} alt={dataCamiseta.nombre}/>
             <Card.Body>
                 <Card.Title>{dataCamiseta.nombre}</Card.Title>
 
                 <Card.Text className="mb-1">
-                    Precio: <span>${precioFinal}</span>
+                    Precio:&nbsp;
+                    {dataCamiseta.oferta ? 
+                    <>
+                        <span style={{textDecorationLine:'line-through' }}>${precioInicial}</span> &nbsp;
+                        <span style={{color:'red' }}>${precioFinal}</span>
+                    </> :
+                        <span>${precioFinal}</span>    
+                    }
+
                 </Card.Text>
                 <Card.Text className="mb-1">
                     Temporada: {dataCamiseta.temporada}

@@ -6,7 +6,7 @@ import CartWidget from './CartWidget';
 
 const NavBar = () => {
     return (
-        <Navbar bg="dark" data-bs-theme="dark">
+        <Navbar bg="dark" expand="lg" data-bs-theme="dark">
             <Container>
                 <Navbar.Brand href="#home">GoalStreet</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

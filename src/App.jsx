@@ -3,15 +3,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar';
 import PageTitle from './components/PageTitle';
 import ItemListContainer from './components/ItemListContainer';
+import Footer from './components/Footer';
 
 function App() {
 
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100">
       <NavBar />
-      <PageTitle />
-      <ItemListContainer />
-    </>
+      <main className="flex-fill">
+        <PageTitle />
+        <ItemListContainer />
+      </main>
+      <Footer />
+    </div>
   )
 }
 

@@ -11,12 +11,10 @@ const CartWidget = () => {
     }
 
     return (
-        <>
+        <div>
             <FaShoppingCart style={iconStyles} />
-            <Badge pill bg="primary">
-                5
-            </Badge>
-        </>
+            <Badge pill bg="primary">5</Badge>
+        </div>
     )
 }
 
