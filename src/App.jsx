@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import PageTitle from './components/PageTitle';
 import ItemListContainer from './components/ItemListContainer';
 import Footer from './components/Footer';
+import ItemDetailContainer from './components/ItemDetailContainer';
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <NavBar />
       <main className="flex-fill">
         <PageTitle />
+        <ItemDetailContainer/>
         <ItemListContainer />
       </main>
       <Footer />
