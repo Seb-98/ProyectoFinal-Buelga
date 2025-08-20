@@ -2,22 +2,31 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar';
 import PageTitle from './components/PageTitle';
-import ItemListContainer from './components/ItemListContainer';
 import Footer from './components/Footer';
-import ItemDetailContainer from './components/ItemDetailContainer';
+import HomePage from './components/HomePage';
+import DetailPage from './components/DetailPage';
+import NotFoundPage from './components/NotFoundPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
 
   return (
-    <div className="d-flex flex-column min-vh-100">
-      <NavBar />
-      <main className="flex-fill">
+    <BrowserRouter>
+      <div className="d-flex flex-column min-vh-100">
+        <NavBar />
         <PageTitle />
-        <ItemDetailContainer/>
-        <ItemListContainer />
-      </main>
-      <Footer />
-    </div>
+
+        <main className="flex-fill">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/detail/:id" element={<DetailPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </div>
+    </BrowserRouter>
   )
 }
 

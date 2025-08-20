@@ -3,12 +3,17 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import '../css/styleNavBar.css';
 import CartWidget from './CartWidget';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     return (
         <Navbar bg="dark" expand="lg" data-bs-theme="dark">
             <Container>
-                <Navbar.Brand ><img src="public/images/op1.png" style={{height:'50px',width:'auto'}}></img></Navbar.Brand>
+                <Navbar.Brand>
+                    <Link to="/">
+                        <img src="/images/op1.png" style={{ height: '50px', width: 'auto' }} />
+                    </Link>
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="m-auto">

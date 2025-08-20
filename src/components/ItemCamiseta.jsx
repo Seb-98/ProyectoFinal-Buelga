@@ -1,5 +1,6 @@
 import { Button, Card } from 'react-bootstrap';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function ItemCamiseta({ dataCamiseta }) {
     const [boxShadow, setBoxShadow] = useState('');
@@ -47,7 +48,9 @@ function ItemCamiseta({ dataCamiseta }) {
                 </Card.Text>
 
                 <div className="d-flex justify-content-center mt-3">
-                    <Button variant="dark" className="">Comprar</Button>
+                    <Button variant="dark" className="">
+                        <Link to={`/detail/${dataCamiseta.id}`} className="text-white text-decoration-none">Comprar</Link>
+                    </Button>
                 </div>
             </Card.Body>
         </Card>
