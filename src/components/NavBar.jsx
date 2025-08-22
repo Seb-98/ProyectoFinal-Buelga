@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import '../css/styleNavBar.css';
 import CartWidget from './CartWidget';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
     return (
@@ -14,13 +14,13 @@ const NavBar = () => {
                 </Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                
+
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="m-auto">
-                        <Nav.Link className="nav-link-header" href="#home">Local</Nav.Link>
-                        <Nav.Link className="nav-link-header" href="#link">Internacional</Nav.Link>
-                        <Nav.Link className="nav-link-header" href="#link">Selecciones</Nav.Link>
-                        <Nav.Link className="nav-link-header" href="#link">Ofertas!</Nav.Link>
+                        <Nav.Link className="nav-link-header" href={`/categories/Local`}>Local</Nav.Link>
+                        <Nav.Link className="nav-link-header" href={`/categories/Internacional`}>Internacional</Nav.Link>
+                        <Nav.Link className="nav-link-header" href={`/categories/Selecciones`}>Selecciones</Nav.Link>
+                        <Nav.Link className="nav-link-header" href={`/categories/Oferta`}>Ofertas!</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
 

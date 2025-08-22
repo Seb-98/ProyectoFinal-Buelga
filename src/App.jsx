@@ -1,10 +1,10 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import HomePage from './components/HomePage';
-import DetailPage from './components/DetailPage';
 import NotFoundPage from './components/NotFoundPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ContainerPage from './components/ContainerPage';
+import ItemListContainer from './components/ItemListContainer';
+import ItemDetailContainer from './components/ItemDetailContainer';
 
 function App() {
 
@@ -12,8 +12,9 @@ function App() {
     <BrowserRouter>
       <ContainerPage>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/detail/:id" element={<DetailPage />} />
+          <Route path="/" element={<ItemListContainer />} />
+          <Route path="/categories/:category" element={<ItemListContainer />} />
+          <Route path="/detail/:id" element={<ItemDetailContainer />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </ContainerPage>
