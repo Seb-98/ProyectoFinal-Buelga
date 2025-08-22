@@ -1,7 +1,7 @@
 const NotFoundPage = () => {
     return (
-        <div>
-            <h2>PAGE NOT FOUND</h2>
+        <div className="d-flex justify-content-center mt-3">
+            <h1>PAGE NOT FOUND</h1>
         </div>
     )
 }

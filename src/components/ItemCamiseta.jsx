@@ -48,9 +48,7 @@ function ItemCamiseta({ dataCamiseta }) {
                 </Card.Text>
 
                 <div className="d-flex justify-content-center mt-3">
-                    <Button variant="dark" className="">
-                        <Link to={`/detail/${dataCamiseta.id}`} className="text-white text-decoration-none">Comprar</Link>
-                    </Button>
+                    <Link to={`/detail/${dataCamiseta.id}`} className="btn btn-dark">Comprar</Link>
                 </div>
             </Card.Body>
         </Card>
