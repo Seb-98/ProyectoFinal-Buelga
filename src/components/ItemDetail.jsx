@@ -1,5 +1,7 @@
-import { Container, Card, Button } from 'react-bootstrap';
+import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
+import Form from 'react-bootstrap/Form';
+
 
 const ItemDetail = ({ dataDetail }) => {
     const [count, setCount] = useState(0)
@@ -7,35 +9,59 @@ const ItemDetail = ({ dataDetail }) => {
     const precioInicial = dataDetail.precio;
     const precioFinal = dataDetail.oferta ? precioInicial * dataDetail.porcDesc : precioInicial;
 
-    const handleChange = () => {
-        const suma = count + 1;
-        setCount(suma);
+    const handleChange = (e) => {
+        if (e.target.value <= 3 && e.target.value >= 0) {
+            setCount(e.target.value);
+        }else{
+            setCount(0)
+        }
     }
+
 
     return (
         <Container>
-            <Card className="mb-4" style={{ width: '18rem', height: '450px' }}>
-                <Card.Img variant="top" src={dataDetail.img} />
-                <Card.Body>
-                    <Card.Title>{dataDetail.nombre}</Card.Title>
+            <Row className="align-items-center justify-content-center">
+                <Col md={6} lg={5} className="d-flex justify-content-center">
+                    <Card className="border-0">
+                        <Card.Img src={dataDetail.img} alt={dataDetail.nombre} className="img-fluid rounded shadow" style={{ maxHeight: '400px', objectFit: 'contain' }}
+                        />
+                    </Card>
+                </Col>
 
-                    <Card.Text className="mb-1">
-                        Precio:&nbsp;
-                        {dataDetail.oferta ?
-                            <>
-                                <span style={{ textDecorationLine: 'line-through' }}>${precioInicial}</span> &nbsp;
-                                <span style={{ color: 'red' }}>${precioFinal}</span>
-                            </> :
-                            <span>${precioFinal}</span>
-                        }
-                    </Card.Text>
+                <Col md={6} lg={5}>
+                    <Card className="border-0">
+                        <Card.Body>
+                            <Card.Title className="fs-2 fw-bold">{dataDetail.nombre}</Card.Title>
 
-                    <div className="d-flex justify-content-center mt-3">
-                        <input type="number" value={count} onChange={handleChange} min={0} max={3} style={{ width: '40px' }}></input>
-                        <Button variant="dark" className="">Agregar</Button>
-                    </div>
-                </Card.Body>
-            </Card>
+                            <Card.Text className="mb-2">
+                                Precio:&nbsp;
+                                {dataDetail.oferta ? (
+                                    <>
+                                        <span className="text-decoration-line-through">
+                                            ${precioInicial}
+                                        </span>
+                                        &nbsp;
+                                        <span className="text-danger">${precioFinal}</span>
+                                    </>
+                                ) : (
+                                    <span>${precioFinal}</span>
+                                )}
+                            </Card.Text>
+
+                            <Card.Text className="mb-2">Temporada: {dataDetail.temporada}</Card.Text>
+                            <Card.Text className="mb-2">Seleccionar Talle </Card.Text>
+                            <Card.Text className="mb-2 small text-muted">{dataDetail.categoria}</Card.Text>
+
+                            <div className="d-flex justify-content-center justify-content-md-start mt-3 flex-wrap gap-3 mb-3">
+                                <Form.Control type="number" value={count} onChange={handleChange} min={0} max={3} style={{ width: '70px' }} />
+                                <Button variant="dark">Agregar</Button>
+                            </div>
+                            <Card.Text className="small text-muted mb-1">Informacion Extra</Card.Text>
+                            <Card.Text className="small text-muted">*La compra esta limitada a 3 unidades por talle</Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
         </Container>
     )
 }

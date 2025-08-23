@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getProductos } from '../mocks/AsyncMock'
 import ItemList from './ItemList'
-import '../css/styleListContainer.css'
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom'
 
@@ -32,7 +31,7 @@ const ItemListContainer = () => {
 
     return (
         <Container>
-            <ItemList dataList={data} />
+            <ItemList dataItemList={data} />
         </Container>
     )
 }

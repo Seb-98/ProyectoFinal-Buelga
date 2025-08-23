@@ -1,8 +1,8 @@
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function ItemCamiseta({ dataCamiseta }) {
+function Item({ dataCamiseta }) {
     const [boxShadow, setBoxShadow] = useState('');
 
     const precioInicial = dataCamiseta.precio;
@@ -43,7 +43,7 @@ function ItemCamiseta({ dataCamiseta }) {
                 <Card.Text className="mb-1">
                     Temporada: {dataCamiseta.temporada}
                 </Card.Text>
-                <Card.Text className="mb-1 categoryDescription">
+                <Card.Text className="mb-1 small text-muted">
                     {dataCamiseta.categoria}
                 </Card.Text>
 
@@ -55,4 +55,4 @@ function ItemCamiseta({ dataCamiseta }) {
     );
 }
 
-export default ItemCamiseta;
+export default Item;

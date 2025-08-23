@@ -9,7 +9,7 @@ const ContainerPage = ({ children }) => {
             <NavBar />
             <PageTitle />
 
-            <div className="flex-fill">
+            <div className="flex-fill my-4">
                 {children}
             </div>
             

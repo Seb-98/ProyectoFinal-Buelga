@@ -1,11 +1,11 @@
-import ItemCamiseta from "./ItemCamiseta";
+import Item from "./Item";
 
-const ItemList = ({ dataList }) => {
+const ItemList = ({ dataItemList }) => {
 
     return (
         <div className="d-flex flex-wrap justify-content-center gap-4">
-            {dataList.map((item) => (
-                <ItemCamiseta dataCamiseta={item} key={item.id} />
+            {dataItemList.map((item) => (
+                <Item dataCamiseta={item} key={item.id} />
             ))}
         </div>
     )

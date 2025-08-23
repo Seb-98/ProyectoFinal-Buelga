@@ -129,13 +129,11 @@ export const getProductById = (id) => {
     let errorPromise = true;
 
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (errorPromise) {
-                resolve(productos.filter((item) => item.id == id))
-            } else {
-                reject("Hubo un error al traer los productos");
-            }
-        }, 2000);
+        if (errorPromise) {
+            resolve(productos.filter((item) => item.id == id))
+        } else {
+            reject("Hubo un error al traer los productos");
+        }
     })
 }
 
