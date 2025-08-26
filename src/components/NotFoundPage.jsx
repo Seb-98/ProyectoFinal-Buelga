@@ -1,7 +1,7 @@
 const NotFoundPage = () => {
     return (
-        <div className="d-flex justify-content-center mt-3">
-            <h1>PAGE NOT FOUND</h1>
+        <div className="d-flex justify-content-center">
+            <img style={{height:'500px',width:'500px'}} src="/images/NotFoundPage404.png"></img>
         </div>
     )
 }
