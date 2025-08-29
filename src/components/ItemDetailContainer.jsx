@@ -8,7 +8,6 @@ const ItemDetailContainer = () => {
     const [data, setData] = useState('')
 
     useEffect(() => {
-        console.log(id,'useEffect');
         getProductById(id)
             .then((res) => { setData(res[0]) })
             .catch((error) => { console.error(error) })

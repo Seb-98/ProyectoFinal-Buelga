@@ -1,6 +1,7 @@
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
+import ItemCount from './ItemCount';
 
 
 const ItemDetail = ({ dataDetail }) => {
@@ -52,12 +53,8 @@ const ItemDetail = ({ dataDetail }) => {
                             <Card.Text className="mb-2">Seleccionar Talle </Card.Text>
                             <Card.Text className="mb-2 small text-muted">{dataDetail.categoria}</Card.Text>
 
-                            <div className="d-flex justify-content-center justify-content-md-start mt-3 flex-wrap gap-3 mb-3">
-                                <Form.Control type="number" value={count} onChange={handleChange} min={0} max={3} style={{ width: '70px' }} />
-                                <Button variant="dark">Agregar</Button>
-                            </div>
-                            <Card.Text className="small text-muted mb-1">Informacion Extra</Card.Text>
-                            <Card.Text className="small text-muted">*La compra esta limitada a 3 unidades por talle</Card.Text>
+                            <ItemCount stock={dataDetail.stock}/>
+
                         </Card.Body>
                     </Card>
                 </Col>

@@ -17,10 +17,10 @@ const NavBar = () => {
 
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="m-auto">
-                        <Nav.Link className="nav-link-header" href={`/categories/Local`}>Local</Nav.Link>
-                        <Nav.Link className="nav-link-header" href={`/categories/Internacional`}>Internacional</Nav.Link>
-                        <Nav.Link className="nav-link-header" href={`/categories/Selecciones`}>Selecciones</Nav.Link>
-                        <Nav.Link className="nav-link-header" href={`/categories/Oferta`}>Ofertas!</Nav.Link>
+                        <Nav.Link as={NavLink} to="/categories/Local" className="nav-link-header">Local</Nav.Link>
+                        <Nav.Link as={NavLink} to="/categories/Internacional" className="nav-link-header">Internacional</Nav.Link>
+                        <Nav.Link as={NavLink} to="/categories/Selecciones" className="nav-link-header">Selecciones</Nav.Link>
+                        <Nav.Link as={NavLink} to="/categories/Oferta" className="nav-link-header">Ofertas!</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
 
