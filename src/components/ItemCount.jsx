@@ -1,20 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap';
 
-const ItemCount = ({ stock }) => {
-    const [count, setCount] = useState(0)
+const ItemCount = ({ stock, onAdd, value }) => {
+    const [count, setCount] = useState(value)
+
+    useEffect(() => {
+        setCount(value);
+    }, [value]);
 
     const sumar = () => {
-        const procesValueSum = count + 1;
-        if (procesValueSum <= stock) {
-            setCount(procesValueSum)
+        if (count < stock) {
+            setCount(count + 1)
         }
     }
 
     const restar = () => {
-        const procesValue = count - 1;
-        if (procesValue >= 0) {
-            setCount(procesValue)
+        if (count > 0) {
+            setCount(count - 1)
         }
     }
 
@@ -25,8 +27,7 @@ const ItemCount = ({ stock }) => {
                 <span className='btn'>{count}</span>
                 <button className='btn btn-dark' onClick={sumar}>+</button>
             </div>
-
-            <Button className='btn btn-dark'>Agregar</Button>
+            <Button className='btn btn-dark' disabled={stock === 0 || count === 0} onClick={() => onAdd(count)}>Agregar</Button>
         </div>
     );
 }

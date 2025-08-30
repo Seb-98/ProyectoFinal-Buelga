@@ -1,22 +1,21 @@
-import { Container, Card, Button, Row, Col } from 'react-bootstrap';
-import { useState } from 'react';
-import Form from 'react-bootstrap/Form';
+import { Container, Card, Row, Col } from 'react-bootstrap';
 import ItemCount from './ItemCount';
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 
 
 const ItemDetail = ({ dataDetail }) => {
-    const [count, setCount] = useState(0)
 
     const precioInicial = dataDetail.precio;
     const precioFinal = dataDetail.oferta ? precioInicial * dataDetail.porcDesc : precioInicial;
+    const { cart, addItemCart } = useContext(CartContext);
 
-    const handleChange = (e) => {
-        if (e.target.value <= 3 && e.target.value >= 0) {
-            setCount(e.target.value);
-        }else{
-            setCount(0)
-        }
+    const onAdd = (cantidad) => {
+        addItemCart(dataDetail, cantidad);
     }
+
+    const item = cart.find((elem) => elem.id === dataDetail.id);
+    const qtyValue = item ? item.quantity : 0;
 
 
     return (
@@ -53,7 +52,7 @@ const ItemDetail = ({ dataDetail }) => {
                             <Card.Text className="mb-2">Seleccionar Talle </Card.Text>
                             <Card.Text className="mb-2 small text-muted">{dataDetail.categoria}</Card.Text>
 
-                            <ItemCount stock={dataDetail.stock}/>
+                            <ItemCount stock={dataDetail.stock} onAdd={onAdd} value={qtyValue} />
 
                         </Card.Body>
                     </Card>
