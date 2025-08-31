@@ -8,8 +8,7 @@ const productos = [
         categoria: 'Local',
         oferta: false,
         porcDesc: 0,
-        stock: 20,
-        nuevoStock: [
+        stock: [
             { talle: 'S', cantidad: 14 },
             { talle: 'M', cantidad: 16 },
             { talle: 'X', cantidad: 20 }
@@ -24,8 +23,7 @@ const productos = [
         categoria: 'Internacional',
         oferta: true,
         porcDesc: 0.80,
-        stock: 20,
-        nuevoStock: [
+        stock: [
             { talle: 'S', cantidad: 20 },
             { talle: 'M', cantidad: 20 },
             { talle: 'X', cantidad: 20 }
@@ -40,8 +38,7 @@ const productos = [
         categoria: 'Selecciones',
         oferta: false,
         porcDesc: 0,
-        stock: 20,
-        nuevoStock: [
+        stock: [
             { talle: 'S', cantidad: 20 },
             { talle: 'M', cantidad: 20 },
             { talle: 'X', cantidad: 20 }
@@ -56,8 +53,7 @@ const productos = [
         categoria: 'Selecciones',
         oferta: true,
         porcDesc: 0.80,
-        stock: 20,
-        nuevoStock: [
+        stock: [
             { talle: 'S', cantidad: 20 },
             { talle: 'M', cantidad: 20 },
             { talle: 'X', cantidad: 20 }
@@ -72,8 +68,7 @@ const productos = [
         categoria: 'Local',
         oferta: false,
         porcDesc: 0,
-        stock: 20,
-        nuevoStock: [
+        stock: [
             { talle: 'S', cantidad: 20 },
             { talle: 'M', cantidad: 20 },
             { talle: 'X', cantidad: 20 }
@@ -88,8 +83,7 @@ const productos = [
         categoria: 'Internacional',
         oferta: false,
         porcDesc: 0,
-        stock: 20,
-        nuevoStock: [
+        stock: [
             { talle: 'S', cantidad: 20 },
             { talle: 'M', cantidad: 20 },
             { talle: 'X', cantidad: 20 }
@@ -104,8 +98,7 @@ const productos = [
         categoria: 'Selecciones',
         oferta: true,
         porcDesc: 0.90,
-        stock: 20,
-        nuevoStock: [
+        stock: [
             { talle: 'S', cantidad: 20 },
             { talle: 'M', cantidad: 20 },
             { talle: 'X', cantidad: 20 }
@@ -120,8 +113,7 @@ const productos = [
         categoria: 'Local',
         oferta: false,
         porcDesc: 0,
-        stock: 20,
-        nuevoStock: [
+        stock: [
             { talle: 'S', cantidad: 20 },
             { talle: 'M', cantidad: 20 },
             { talle: 'X', cantidad: 20 }
@@ -136,8 +128,7 @@ const productos = [
         categoria: 'Internacional',
         oferta: true,
         porcDesc: 0.75,
-        stock: 20,
-        nuevoStock: [
+        stock: [
             { talle: 'S', cantidad: 20 },
             { talle: 'M', cantidad: 20 },
             { talle: 'X', cantidad: 20 }
@@ -152,8 +143,7 @@ const productos = [
         categoria: 'Local',
         oferta: false,
         porcDesc: 0,
-        stock: 20,
-        nuevoStock: [
+        stock: [
             { talle: 'S', cantidad: 20 },
             { talle: 'M', cantidad: 20 },
             { talle: 'X', cantidad: 20 }

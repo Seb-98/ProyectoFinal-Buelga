@@ -3,10 +3,12 @@ import { getProductos } from '../mocks/AsyncMock'
 import ItemList from './ItemList'
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom'
+import Loader from './Loader';
 
 const ItemListContainer = () => {
     const { category } = useParams();
     const [data, setData] = useState([])
+    const [loading, setLoading] = useState(true);
     let resFilter = [];
 
     useEffect(() => {
@@ -25,12 +27,14 @@ const ItemListContainer = () => {
             })
             .catch((error) => { console.error(error) })
             .finally(() => {
+                setLoading(false)
                 console.log("Finalizó el proceso de carga");
             });
     }, [category])
 
     return (
         <Container>
+            {loading ? <Loader/> : ''}
             <ItemList dataItemList={data} />
         </Container>
     )

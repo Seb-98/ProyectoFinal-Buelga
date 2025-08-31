@@ -1,8 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from 'react-bootstrap';
 
 const ItemCount = ({ stock, onAdd, talleSelect, onDelete }) => {
     const [count, setCount] = useState(0);
+
+    useEffect(()=>{
+        setCount(0);
+    },[onAdd])
 
     const sumar = () => {
         if (count < stock) {
@@ -17,7 +21,7 @@ const ItemCount = ({ stock, onAdd, talleSelect, onDelete }) => {
     }
 
     return (
-        <div className='d-flex justify-content-center justify-content-md-start mt-3 flex-wrap gap-3 mb-3'>
+        <div className='d-flex mt-3 gap-3 mb-3'>
             <div>
                 <Button className='btn btn-dark' disabled={talleSelect == ''} onClick={restar}>-</Button>
                 <span className='btn'>{count}</span>

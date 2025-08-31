@@ -5,7 +5,6 @@ import { CartContext } from '../context/CartContext';
 import TallesList from './TallesList';
 import { useState } from 'react';
 import ItemTallesList from './ItemTallesList';
-import { data } from 'react-router-dom';
 
 const ItemDetail = ({ dataDetail }) => {
     const precioInicial = dataDetail.precio;
@@ -21,7 +20,7 @@ const ItemDetail = ({ dataDetail }) => {
     const selectTalle = (btnValue) => {
         setTalle(btnValue)
 
-        let stockDisponibleTalle = dataDetail.nuevoStock.find((elem) => elem.talle === btnValue);
+        let stockDisponibleTalle = dataDetail.stock.find((elem) => elem.talle === btnValue);
         setStockDisponible(stockDisponibleTalle.cantidad)
     }
 
@@ -68,10 +67,11 @@ const ItemDetail = ({ dataDetail }) => {
                             <Card.Text className="mb-2 small text-muted">{dataDetail.categoria}</Card.Text>
                             <Card.Text className="mb-2">Seleccionar Talle </Card.Text>
 
-                            <TallesList data={dataDetail.nuevoStock} select={selectTalle} />
+                            <TallesList data={dataDetail.stock} select={selectTalle} selected={talle}/>
                             <Card.Text className="mb-2 small tex t-muted">Stock {stockDisponible}</Card.Text>
 
-                            <ItemCount stock={dataDetail.stock} onAdd={onAdd} talleSelect={talle} onDelete={() => onDelete(dataDetail.id)} />
+                            <ItemCount stock={stockDisponible} onAdd={onAdd} talleSelect={talle} onDelete={() => onDelete(dataDetail.id)} />
+                            
                             <ItemTallesList data={itemInCart ? itemInCart.selectStock : []} handleDelete={onDeleteTalle}></ItemTallesList>
 
                         </Card.Body>
