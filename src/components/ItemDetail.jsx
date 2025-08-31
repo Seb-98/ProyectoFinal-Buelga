@@ -2,20 +2,25 @@ import { Container, Card, Row, Col } from 'react-bootstrap';
 import ItemCount from './ItemCount';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
+import TallesList from './TallesList';
+import { useState } from 'react';
 
 
 const ItemDetail = ({ dataDetail }) => {
 
     const precioInicial = dataDetail.precio;
     const precioFinal = dataDetail.oferta ? precioInicial * dataDetail.porcDesc : precioInicial;
-    const { cart, addItemCart } = useContext(CartContext);
+    const { addItemCart } = useContext(CartContext);
+    const [talle, setTalle] = useState('');
+    
 
     const onAdd = (cantidad) => {
-        addItemCart(dataDetail, cantidad);
+        addItemCart(dataDetail, cantidad, talle);
     }
 
-    const item = cart.find((elem) => elem.id === dataDetail.id);
-    const qtyValue = item ? item.quantity : 0;
+    const selectTalle = (btnValue) =>{
+        setTalle(btnValue)
+    }
 
 
     return (
@@ -50,9 +55,13 @@ const ItemDetail = ({ dataDetail }) => {
 
                             <Card.Text className="mb-2">Temporada: {dataDetail.temporada}</Card.Text>
                             <Card.Text className="mb-2">Seleccionar Talle </Card.Text>
+
+                            <TallesList data={dataDetail.nuevoStock} select={selectTalle}/>
+
+                            <Card.Text className="mb-2 small text-muted">Stock {dataDetail.categoria}</Card.Text>
                             <Card.Text className="mb-2 small text-muted">{dataDetail.categoria}</Card.Text>
 
-                            <ItemCount stock={dataDetail.stock} onAdd={onAdd} value={qtyValue} />
+                            <ItemCount stock={dataDetail.stock} onAdd={onAdd} talleSelect={talle} />
 
                         </Card.Body>
                     </Card>

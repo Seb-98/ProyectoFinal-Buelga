@@ -1,12 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Button } from 'react-bootstrap';
 
-const ItemCount = ({ stock, onAdd, value }) => {
-    const [count, setCount] = useState(value)
-
-    useEffect(() => {
-        setCount(value);
-    }, [value]);
+const ItemCount = ({ stock, onAdd, talleSelect }) => {
+    const [count, setCount] = useState(0);
 
     const sumar = () => {
         if (count < stock) {
@@ -23,9 +19,9 @@ const ItemCount = ({ stock, onAdd, value }) => {
     return (
         <div className='d-flex justify-content-center justify-content-md-start mt-3 flex-wrap gap-3 mb-3'>
             <div>
-                <button className='btn btn-dark' onClick={restar}>-</button>
+                <Button className='btn btn-dark' disabled={talleSelect == ''} onClick={restar}>-</Button>
                 <span className='btn'>{count}</span>
-                <button className='btn btn-dark' onClick={sumar}>+</button>
+                <Button className='btn btn-dark' disabled={talleSelect == ''} onClick={sumar}>+</Button>
             </div>
             <Button className='btn btn-dark' disabled={stock === 0 || count === 0} onClick={() => onAdd(count)}>Agregar</Button>
         </div>

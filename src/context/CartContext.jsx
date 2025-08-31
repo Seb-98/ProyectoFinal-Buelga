@@ -5,12 +5,30 @@ export const CartContext = createContext();
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
 
-    const addItemCart = (item, cant) => {
+    const addItemCart = (item, cant, selectTalle) => {
 
         if (validateItemExist(item.id)) {
             const actualizedCart = cart.map((elem) => {
                 if (elem.id === item.id) {
-                    return { ...elem, quantity: cant }
+
+                    const existeTalle = elem.selectStock.some(obj => obj.talle === selectTalle);
+
+                    let actualizedStock;
+
+                    if (existeTalle) {
+                        actualizedStock = elem.selectStock.map((obj) => {
+                            if (obj.talle === selectTalle) {
+                                return { ...obj, quantity: obj.quantity + cant }
+                            } else {
+                                return obj
+                            }
+                        });
+                    } else {
+                        actualizedStock = [...elem.selectStock, { talle: selectTalle, quantity: cant }];
+                    }
+
+                    return { ...elem, selectStock: actualizedStock };
+
                 } else {
                     return elem
                 }
@@ -18,7 +36,7 @@ const CartProvider = ({ children }) => {
 
             setCart(actualizedCart)
         } else {
-            setCart([...cart, { ...item, quantity: cant }])
+            setCart([...cart, { ...item, selectStock: [{ talle: selectTalle, quantity: cant }] }])
         }
     }
 

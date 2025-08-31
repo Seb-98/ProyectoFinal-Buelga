@@ -6,6 +6,7 @@ import { CartContext } from "../context/CartContext";
 const CartWidget = () => {
     const { cart } = useContext(CartContext);
 
+    // console.log(cart);
     return (
         <div>
             <FaShoppingCart style={{ color: 'white', width: '25px', height: '25px', marginRight: '5px' }} />
