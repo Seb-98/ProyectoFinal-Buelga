@@ -10,8 +10,8 @@ const productos = [
         porcDesc: 0,
         stock: 20,
         nuevoStock: [
-            { talle: 'S', cantidad: 20 },
-            { talle: 'M', cantidad: 20 },
+            { talle: 'S', cantidad: 14 },
+            { talle: 'M', cantidad: 16 },
             { talle: 'X', cantidad: 20 }
         ]
     },

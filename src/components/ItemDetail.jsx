@@ -4,24 +4,35 @@ import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import TallesList from './TallesList';
 import { useState } from 'react';
-
+import ItemTallesList from './ItemTallesList';
+import { data } from 'react-router-dom';
 
 const ItemDetail = ({ dataDetail }) => {
-
     const precioInicial = dataDetail.precio;
     const precioFinal = dataDetail.oferta ? precioInicial * dataDetail.porcDesc : precioInicial;
-    const { addItemCart } = useContext(CartContext);
+    const { addItemCart, deleteItemCart, cart, deleteTalleItemCart } = useContext(CartContext);
     const [talle, setTalle] = useState('');
-    
+    const [stockDisponible, setStockDisponible] = useState('');
 
     const onAdd = (cantidad) => {
         addItemCart(dataDetail, cantidad, talle);
     }
 
-    const selectTalle = (btnValue) =>{
+    const selectTalle = (btnValue) => {
         setTalle(btnValue)
+
+        let stockDisponibleTalle = dataDetail.nuevoStock.find((elem) => elem.talle === btnValue);
+        setStockDisponible(stockDisponibleTalle.cantidad)
     }
 
+    const onDelete = (id) => {
+        deleteItemCart(id);
+    }
+    const onDeleteTalle = (talleStock) => {
+        deleteTalleItemCart(dataDetail.id,talleStock)
+    }
+
+    const itemInCart = cart.find((elem) => elem.id === dataDetail.id);
 
     return (
         <Container>
@@ -54,14 +65,14 @@ const ItemDetail = ({ dataDetail }) => {
                             </Card.Text>
 
                             <Card.Text className="mb-2">Temporada: {dataDetail.temporada}</Card.Text>
+                            <Card.Text className="mb-2 small text-muted">{dataDetail.categoria}</Card.Text>
                             <Card.Text className="mb-2">Seleccionar Talle </Card.Text>
 
-                            <TallesList data={dataDetail.nuevoStock} select={selectTalle}/>
+                            <TallesList data={dataDetail.nuevoStock} select={selectTalle} />
+                            <Card.Text className="mb-2 small tex t-muted">Stock {stockDisponible}</Card.Text>
 
-                            <Card.Text className="mb-2 small text-muted">Stock {dataDetail.categoria}</Card.Text>
-                            <Card.Text className="mb-2 small text-muted">{dataDetail.categoria}</Card.Text>
-
-                            <ItemCount stock={dataDetail.stock} onAdd={onAdd} talleSelect={talle} />
+                            <ItemCount stock={dataDetail.stock} onAdd={onAdd} talleSelect={talle} onDelete={() => onDelete(dataDetail.id)} />
+                            <ItemTallesList data={itemInCart ? itemInCart.selectStock : []} handleDelete={onDeleteTalle}></ItemTallesList>
 
                         </Card.Body>
                     </Card>

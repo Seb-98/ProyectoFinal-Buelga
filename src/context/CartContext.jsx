@@ -11,21 +11,7 @@ const CartProvider = ({ children }) => {
             const actualizedCart = cart.map((elem) => {
                 if (elem.id === item.id) {
 
-                    const existeTalle = elem.selectStock.some(obj => obj.talle === selectTalle);
-
-                    let actualizedStock;
-
-                    if (existeTalle) {
-                        actualizedStock = elem.selectStock.map((obj) => {
-                            if (obj.talle === selectTalle) {
-                                return { ...obj, quantity: obj.quantity + cant }
-                            } else {
-                                return obj
-                            }
-                        });
-                    } else {
-                        actualizedStock = [...elem.selectStock, { talle: selectTalle, quantity: cant }];
-                    }
+                    let actualizedStock = setActualizedStock(elem, selectTalle, cant)
 
                     return { ...elem, selectStock: actualizedStock };
 
@@ -45,15 +31,48 @@ const CartProvider = ({ children }) => {
     }
 
     const deleteItemCart = (id) => {
-        cart.filter((elem) => elem.id !== id);
+        setCart(cart.filter((elem) => elem.id !== id))
+    }
+
+    const deleteTalleItemCart = (id, talle) => {
+        const updateCart = cart.map((elem) => { //recorro cart
+            if (elem.id === id) {               //si es el mismo id, devuelve el obj y la propiedad selectStock con filtro de talle
+                return { ...elem, selectStock: elem.selectStock.filter((elem) => elem.talle !== talle) }
+            } else {
+                return elem;
+            }
+        })
+
+        setCart(updateCart)
     }
 
     const validateItemExist = (id) => {
         return cart.some((elem) => elem.id === id);
     }
 
+    const setActualizedStock = (cartElem, selectedTalle, cant) => {
+        const existeTalle = cartElem.selectStock.some(obj => obj.talle === selectedTalle);      //valida si existe talle en el elemtno del cart
+        let actualizedStock;
+
+        if (existeTalle) {
+            //si existe el talle recorre el selectStock del item card
+            actualizedStock = cartElem.selectStock.map((obj) => {
+                if (obj.talle === selectedTalle) {              //actualiza cantidad del talle ingresado
+                    return { ...obj, quantity: obj.quantity + cant }
+                } else {
+                    return obj
+                }
+            });
+        }
+        else {  //ingresa el talle y cantidad nuevos
+            actualizedStock = [...cartElem.selectStock, { talle: selectedTalle, quantity: cant }];
+        }
+
+        return actualizedStock;
+    }
+
     return (
-        <CartContext.Provider value={{ cart, addItemCart, clearCart }}>
+        <CartContext.Provider value={{ cart, addItemCart, clearCart, deleteItemCart, deleteTalleItemCart }}>
             {children}
         </CartContext.Provider>
     )
