@@ -1,20 +1,35 @@
 import { useEffect, useState } from 'react'
-import { getProductById } from '../mocks/AsyncMock'
 import ItemDetail from './ItemDetail'
 import { useParams } from 'react-router-dom'
+import Loader from './Loader';
+import { getSingleItem } from '../service/firebase';
 
 const ItemDetailContainer = () => {
-    const {id} = useParams();
+    const { id } = useParams();
     const [data, setData] = useState('')
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        getProductById(id)
-            .then((res) => { setData(res[0]) })
-            .catch((error) => { console.error(error) })
+        setLoading(true);
+
+        getSingleItem(id)
+            .then((elem) => {
+                setData({
+                    id: elem.id,
+                    ...elem
+                })
+            })
+            .catch((error) => {
+                console.error("Error al obtener datos: " + error)
+            })
             .finally(() => {
-                console.log("Finalizó el proceso de carga");
-            });
+                setLoading(false);
+            })
     }, [id])
+
+    if (loading) {
+        return <Loader />
+    }
 
     return (
         <div>

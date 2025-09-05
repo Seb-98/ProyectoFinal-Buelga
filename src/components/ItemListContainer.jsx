@@ -1,40 +1,54 @@
 import { useEffect, useState } from 'react'
-import { getProductos } from '../mocks/AsyncMock'
 import ItemList from './ItemList'
 import { Container } from 'react-bootstrap';
 import { useParams } from 'react-router-dom'
 import Loader from './Loader';
+import { db } from '../service/firebase';
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const ItemListContainer = () => {
     const { category } = useParams();
     const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true);
-    let resFilter = [];
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        getProductos()
+        setLoading(true);
+
+        let productsCollection = [];
+        if (category) {
+            if (category === "Oferta") {
+                productsCollection = query(collection(db, 'products'), where("oferta", "==", true));
+            } else {
+                productsCollection = query(collection(db, 'products'), where("categoria", "==", category));
+            }
+        } else {
+            productsCollection = collection(db, 'products');
+        }
+
+        getDocs(productsCollection)
             .then((res) => {
-                if (category) {
-                    if (category === "Oferta") {
-                        resFilter = res.filter((item) => item.oferta == true)
-                    } else {
-                        resFilter = res.filter((item) => item.categoria === category)
+                const dataList = res.docs.map((item) => {
+                    return {
+                        id: item.id,
+                        ...item.data()
                     }
-                    setData(resFilter);
-                } else {
-                    setData(res)
-                }
+                })
+                setData(dataList);
             })
-            .catch((error) => { console.error(error) })
+            .catch((error) => {
+                console.error("Error al traer coleccion: " + error)
+            })
             .finally(() => {
-                setLoading(false)
-                console.log("Finalizó el proceso de carga");
-            });
+                setLoading(false);
+            })
     }, [category])
+
+    if (loading) {
+        return <Loader />
+    }
 
     return (
         <Container>
-            {loading ? <Loader/> : ''}
             <ItemList dataItemList={data} />
         </Container>
     )
