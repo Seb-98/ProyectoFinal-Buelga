@@ -35,7 +35,7 @@ const ItemDetail = ({ dataDetail }) => {
 
     return (
         <Container>
-            <Row className="align-items-center justify-content-center">
+            <Row className="align-items-start justify-content-center">
                 <Col md={6} lg={5} className="d-flex justify-content-center">
                     <Card className="border-0">
                         <Card.Img src={dataDetail.img} alt={dataDetail.nombre} className="img-fluid rounded shadow" style={{ maxHeight: '400px', objectFit: 'contain' }}

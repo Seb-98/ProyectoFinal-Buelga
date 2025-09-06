@@ -8,15 +8,15 @@ const ItemTallesList = ({ data, handleDelete }) => {
     return (
         <div className="d-flex flex-wrap gap-2 mt-2">
             {data.map((elem) => (
-                <div key={elem.talle} className="d-flex align-items-center border rounded justify-content-between px-2 py-1 itemTalleList">
-                    <span className="me-2">Talle <b>{elem.talle}</b> ({elem.quantity})</span>
+                <div key={elem.talle} className="d-flex align-items-center border rounded px-2 py-1 itemTalleList">
+                    <span className="me-2"><b>{elem.talle}</b> ({elem.quantity})</span>
                     <Button
                         variant="dark"
                         className="p-0 d-flex align-items-center"
                         style={{ width: "15px", height: "15px" }}
                         onClick={() => handleDelete(elem.talle)}
                     >
-                    <RxCross2 />
+                        <RxCross2 />
                     </Button>
                 </div>
             ))}
