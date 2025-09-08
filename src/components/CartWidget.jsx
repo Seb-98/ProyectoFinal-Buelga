@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 const CartWidget = () => {
     const { cart } = useContext(CartContext);
 
-    console.log(cart);
+    // console.log(cart);
     return (
         <div>
             <NavLink to="/cart">
