@@ -59,7 +59,7 @@ const ItemCart = ({ data }) => {
                     <h4>${precioFinal}</h4>
                 )}
 
-                <Button variant="dark" size="xm" className="mt-4" onClick={() => onDelete(data.id)}>
+                <Button className="mt-4 btn-delete" size="xm"  onClick={() => onDelete(data.id)}>
                     Eliminar
                 </Button>
             </Col>

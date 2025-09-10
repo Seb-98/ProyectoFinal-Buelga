@@ -13,7 +13,7 @@ const SectionButtonsCart = () => {
 
     return (
         <div className="d-flex flex-wrap justify-content-center gap-5 mt-2">
-            <Button variant="dark" size="xm" onClick={deleteCart}>Eliminar Productos</Button>
+            <Button className="btn-delete" size="xm" onClick={deleteCart}>Eliminar Productos</Button>
             <Link to="/checkout" className="btn btn-dark">Continuar Compra</Link>
         </div>
     );

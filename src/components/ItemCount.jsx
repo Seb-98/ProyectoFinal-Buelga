@@ -28,7 +28,7 @@ const ItemCount = ({ stock, onAdd, talleSelect, onDelete }) => {
                 <Button className='btn btn-dark' disabled={talleSelect == ''} onClick={sumar}>+</Button>
             </div>
             <Button className='btn btn-dark' disabled={stock === 0 || count === 0} onClick={() => onAdd(count)}>Agregar</Button>
-            <Button className='btn btn-danger' onClick={onDelete}>Eliminar</Button>
+            <Button className='btn-delete' onClick={onDelete}>Eliminar</Button>
         </div>
     );
 }

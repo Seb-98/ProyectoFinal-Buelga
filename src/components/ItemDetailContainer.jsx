@@ -12,7 +12,7 @@ const ItemDetailContainer = () => {
     useEffect(() => {
         setLoading(true);
 
-        getSingleItem(id)
+        getSingleItem(id,'products')
             .then((elem) => {
                 setData({
                     id: elem.id,

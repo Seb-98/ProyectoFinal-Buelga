@@ -8,3 +8,24 @@
     max-width: 80px;
     width: 70px;
 }
+
+.btn-delete {
+    background-color: white !important;
+    color: black !important;
+    border: 1px solid black !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-delete:hover,
+.btn-delete:focus {
+    background-color: black !important;
+    color: white !important;
+    border-color: black !important;
+}
+
+.iconCard{
+    color: white;
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
+}

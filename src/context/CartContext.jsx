@@ -71,8 +71,29 @@ const CartProvider = ({ children }) => {
         return actualizedStock;
     }
 
+    const totalCart = () => {
+        let sumaTotal = 0;
+
+        cart.map((elem) => {
+            let cantidad = 0;
+            cantidad = elem.selectStock.reduce((acumulador, item) => acumulador + item.quantity, 0)
+            sumaTotal += elem.oferta ? (elem.precio * cantidad) * elem.porcDesc : elem.precio * cantidad;
+        })
+
+        return sumaTotal;
+    }
+
+    const resumeCart = () => {
+        const resumeCart = cart.map((elem) => {
+            const unitPrice = elem.oferta ? elem.precio * elem.porcDesc : elem.precio
+            return { id: elem.id, articles: { unitPrice: unitPrice, stock: elem.selectStock } }
+        })
+
+        return resumeCart;
+    }
+
     return (
-        <CartContext.Provider value={{ cart, addItemCart, clearCart, deleteItemCart, deleteTalleItemCart }}>
+        <CartContext.Provider value={{ cart, addItemCart, clearCart, deleteItemCart, deleteTalleItemCart, totalCart, resumeCart }}>
             {children}
         </CartContext.Provider>
     )

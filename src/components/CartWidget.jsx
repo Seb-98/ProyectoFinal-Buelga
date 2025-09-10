@@ -7,11 +7,11 @@ import { NavLink } from "react-router-dom";
 const CartWidget = () => {
     const { cart } = useContext(CartContext);
 
-    // console.log(cart);
+    console.log(cart);
     return (
         <div>
             <NavLink to="/cart">
-                <FaShoppingCart style={{ color: 'white', width: '25px', height: '25px', marginRight: '5px' }} />
+                <FaShoppingCart className="iconCard" />
             </NavLink>
             <Badge pill bg="primary">{cart.length}</Badge>
         </div>

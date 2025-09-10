@@ -20,8 +20,8 @@ const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
 
-export async function getSingleItem(id) {
-    const documentRef = doc(db, 'products', id);
+export async function getSingleItem(id, bdName) {
+    const documentRef = doc(db, bdName, id);
 
     try {
         const snapshot = await getDoc(documentRef);
@@ -35,6 +35,19 @@ export async function getSingleItem(id) {
         }
     } catch (error) {
         console.error("error al obtener producto " + error);
+    }
+}
+
+export async function insertSingleItem(elem, bdName) {
+    const itemCollectionRef = collection(db, bdName);
+
+    try {
+        const docRef = await addDoc(itemCollectionRef, elem);
+        return docRef;
+    }
+    catch (error) {
+        console.error(error, `Error al obtener ${bdName}`)
+        return false;
     }
 }
 
