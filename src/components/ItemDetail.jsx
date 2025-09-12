@@ -1,4 +1,4 @@
-import { Container, Card, Row, Col } from 'react-bootstrap';
+import { Container, Card, Row, Col, Button } from 'react-bootstrap';
 import ItemCount from './ItemCount';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
@@ -9,12 +9,31 @@ import ItemTallesList from './ItemTallesList';
 const ItemDetail = ({ dataDetail }) => {
     const precioInicial = dataDetail.precio;
     const precioFinal = dataDetail.oferta ? precioInicial * dataDetail.porcDesc : precioInicial;
-    const { addItemCart, deleteItemCart, cart, deleteTalleItemCart } = useContext(CartContext);
+    const { addItemCart, deleteItemCart, cart, deleteTalleItemCart, itemCartStock } = useContext(CartContext);
     const [talle, setTalle] = useState('');
     const [stockDisponible, setStockDisponible] = useState('');
+    const [arrayStock, setArrayStock] = useState(itemCartStock(dataDetail.id));
+    const [itemAdd, setItemAdd] = useState(false);
 
-    const onAdd = (cantidad) => {
-        addItemCart(dataDetail, cantidad, talle);
+    const onAddStock = (cantidad) => {
+        if (arrayStock.length === 0) {
+            setArrayStock([{ talle, quantity: cantidad }]);
+        } else {
+            const existeTalle = arrayStock.some(obj => obj.talle === talle);
+
+            if (existeTalle) {
+                setArrayStock(arrayStock.map((elem) =>
+                    elem.talle === talle ? { ...elem, quantity: elem.quantity + cantidad } : elem
+                ));
+            } else {
+                setArrayStock([...arrayStock, { talle, quantity: cantidad }]);
+            }
+        }
+    };
+
+    const onAddItem = () => {
+        setItemAdd(true);
+        addItemCart(dataDetail, arrayStock);
     }
 
     const selectTalle = (btnValue) => {
@@ -26,12 +45,11 @@ const ItemDetail = ({ dataDetail }) => {
 
     const onDelete = (id) => {
         deleteItemCart(id);
+        setArrayStock([])
     }
     const onDeleteTalle = (talleStock) => {
-        deleteTalleItemCart(dataDetail.id,talleStock)
+        deleteTalleItemCart(dataDetail.id, talleStock)
     }
-
-    const itemInCart = cart.find((elem) => elem.id === dataDetail.id);
 
     return (
         <Container>
@@ -45,7 +63,7 @@ const ItemDetail = ({ dataDetail }) => {
 
                 <Col md={6} lg={5}>
                     <Card className="border-0">
-                        <Card.Body>
+                        <Card.Body className="py-0">
                             <Card.Title className="fs-2 fw-bold">{dataDetail.nombre}</Card.Title>
 
                             <Card.Text className="mb-2">
@@ -67,12 +85,24 @@ const ItemDetail = ({ dataDetail }) => {
                             <Card.Text className="mb-2 small text-muted">{dataDetail.categoria}</Card.Text>
                             <Card.Text className="mb-2">Seleccionar Talle </Card.Text>
 
-                            <TallesList data={dataDetail.stock} select={selectTalle} selected={talle}/>
+                            <TallesList data={dataDetail.stock} select={selectTalle} selected={talle} />
                             <Card.Text className="mb-2 small tex t-muted">Stock {stockDisponible}</Card.Text>
 
-                            <ItemCount stock={stockDisponible} onAdd={onAdd} talleSelect={talle} onDelete={() => onDelete(dataDetail.id)} />
-                            
-                            <ItemTallesList data={itemInCart ? itemInCart.selectStock : []} handleDelete={onDeleteTalle}></ItemTallesList>
+                            {!itemAdd &&
+                                <>
+                                    <ItemCount stock={stockDisponible} onAdd={onAddStock} talleSelect={talle} />
+                                    <ItemTallesList data={arrayStock} handleDelete={onDeleteTalle}></ItemTallesList>
+                                </>
+                            }
+
+                            <Row className='d-flex justify-content-between mt-3'>
+                                <Col>
+                                    <Button className='btn btn-dark ' onClick={onAddItem} disabled={arrayStock.length === 0}>Confirmar</Button>
+                                </Col>
+                                <Col>
+                                    <Button className='btn-delete' onClick={() => onDelete(dataDetail.id)} disabled={arrayStock.length === 0}>Eliminar</Button>
+                                </Col>
+                            </Row>
 
                         </Card.Body>
                     </Card>

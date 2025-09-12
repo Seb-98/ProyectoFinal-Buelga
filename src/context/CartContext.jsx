@@ -5,24 +5,16 @@ export const CartContext = createContext();
 const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
 
-    const addItemCart = (item, cant, selectTalle) => {
+    const addItemCart = (item, selectStock) => {
 
         if (validateItemExist(item.id)) {
-            const actualizedCart = cart.map((elem) => {
-                if (elem.id === item.id) {
-
-                    let actualizedStock = setActualizedStock(elem, selectTalle, cant)
-
-                    return { ...elem, selectStock: actualizedStock };
-
-                } else {
-                    return elem
-                }
-            })
+            const actualizedCart = cart.map((elem) =>
+                elem.id === item.id ? { ...elem, selectStock: selectStock } : elem
+            )
 
             setCart(actualizedCart)
         } else {
-            setCart([...cart, { ...item, selectStock: [{ talle: selectTalle, quantity: cant }] }])
+            setCart([...cart, { ...item, selectStock: selectStock }])
         }
     }
 
@@ -50,27 +42,6 @@ const CartProvider = ({ children }) => {
         return cart.some((elem) => elem.id === id);
     }
 
-    const setActualizedStock = (cartElem, selectedTalle, cant) => {
-        const existeTalle = cartElem.selectStock.some(obj => obj.talle === selectedTalle);      //valida si existe talle en el elemtno del cart
-        let actualizedStock;
-
-        if (existeTalle) {
-            //si existe el talle recorre el selectStock del item card
-            actualizedStock = cartElem.selectStock.map((obj) => {
-                if (obj.talle === selectedTalle) {              //actualiza cantidad del talle ingresado
-                    return { ...obj, quantity: obj.quantity + cant }
-                } else {
-                    return obj
-                }
-            });
-        }
-        else {  //ingresa el talle y cantidad nuevos
-            actualizedStock = [...cartElem.selectStock, { talle: selectedTalle, quantity: cant }];
-        }
-
-        return actualizedStock;
-    }
-
     const totalCart = () => {
         let sumaTotal = 0;
 
@@ -92,8 +63,13 @@ const CartProvider = ({ children }) => {
         return resumeCart;
     }
 
+    const itemCartStock = (id) => {
+        const findItem = cart.find((elem) => elem.id === id)
+        return findItem ? findItem.selectStock : [];
+    }
+
     return (
-        <CartContext.Provider value={{ cart, addItemCart, clearCart, deleteItemCart, deleteTalleItemCart, totalCart, resumeCart }}>
+        <CartContext.Provider value={{ cart, addItemCart, clearCart, deleteItemCart, deleteTalleItemCart, totalCart, resumeCart, itemCartStock }}>
             {children}
         </CartContext.Provider>
     )

@@ -41,9 +41,7 @@ const ItemCart = ({ data }) => {
             </Col>
             <Col xs={5} md={5} className="d-flex flex-column justify-content-between">
                 <h5>{data.nombre}</h5>
-                <span className="mb-2 small text-muted">Temporada: {data.temporada}</span>
                 <span className="mb-2 small text-muted">${data.precio}</span>
-                <p className="mb-1">{data.cantidad}</p>
 
                 <ItemTallesList data={data.selectStock} handleDelete={onDeleteTalle}></ItemTallesList>
             </Col>
