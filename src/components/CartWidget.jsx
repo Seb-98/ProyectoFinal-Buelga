@@ -5,15 +5,14 @@ import { CartContext } from "../context/CartContext";
 import { NavLink } from "react-router-dom";
 
 const CartWidget = () => {
-    const { cart } = useContext(CartContext);
+    const { cartCount } = useContext(CartContext);
 
-    console.log(cart);
     return (
         <div>
             <NavLink to="/cart">
                 <FaShoppingCart className="iconCard" />
             </NavLink>
-            <Badge pill bg="primary">{cart.length}</Badge>
+            <Badge pill bg="primary">{cartCount()}</Badge>
         </div>
     )
 }

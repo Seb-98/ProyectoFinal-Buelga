@@ -27,15 +27,23 @@ const CartProvider = ({ children }) => {
     }
 
     const deleteTalleItemCart = (id, talle) => {
-        const updateCart = cart.map((elem) => { //recorro cart
-            if (elem.id === id) {               //si es el mismo id, devuelve el obj y la propiedad selectStock con filtro de talle
-                return { ...elem, selectStock: elem.selectStock.filter((elem) => elem.talle !== talle) }
-            } else {
-                return elem;
+        const updateCart = cart.map((elem) =>
+            //si es el mismo id, devuelve el obj y la propiedad selectStock con filtro de talle
+            elem.id === id ? { ...elem, selectStock: elem.selectStock.filter((elem) => elem.talle !== talle) } : elem
+        )
+
+        let count = 0;
+        updateCart.map((elem) => {
+            if (elem.id === id) {
+                count = elem.selectStock.reduce((acumulador, item) => acumulador + item.quantity, 0)
             }
         })
 
-        setCart(updateCart)
+        if (count == 0) {         //si el selectStock queda vacio, borra el item del carrito
+            deleteItemCart(id);
+        } else {                  //sino actualiza el selectStock del carrito
+            setCart(updateCart)
+        }
     }
 
     const validateItemExist = (id) => {
@@ -68,8 +76,18 @@ const CartProvider = ({ children }) => {
         return findItem ? findItem.selectStock : [];
     }
 
+    const cartCount = () => {
+        let cantItem = 0;
+
+        cart.map(elem => {
+            elem.selectStock.map(item => cantItem += item.quantity)
+        })
+
+        return cantItem;
+    }
+
     return (
-        <CartContext.Provider value={{ cart, addItemCart, clearCart, deleteItemCart, deleteTalleItemCart, totalCart, resumeCart, itemCartStock }}>
+        <CartContext.Provider value={{ cart, addItemCart, clearCart, deleteItemCart, deleteTalleItemCart, totalCart, resumeCart, itemCartStock, cartCount }}>
             {children}
         </CartContext.Provider>
     )

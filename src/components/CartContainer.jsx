@@ -6,16 +6,20 @@ import SectionButtonsCart from "./SectionButtonsCart";
 import EmptyCart from "./EmptyCart";
 
 const CartContainer = () => {
-    const { cart } = useContext(CartContext);
+    const { cart, totalCart } = useContext(CartContext);
 
     if (cart.length === 0) {
-        return <EmptyCart/>;
+        return <EmptyCart />;
     }
 
     return (
         <Container>
+            <div className="d-flex flex-wrap justify-content-center gap-3">
+                <h4>Total</h4>
+                <h4>${totalCart()}</h4>
+            </div>
             <ItemCartList dataCartList={cart} />
-            <SectionButtonsCart/>
+            <SectionButtonsCart />
         </Container>
     );
 }

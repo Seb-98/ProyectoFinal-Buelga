@@ -11,3 +11,10 @@ https://readme.so/es/editor
 
 ### CONSIGNAS PROYECTO FINAL
 https://docs.google.com/presentation/d/1exV4skc2mwaoNNYXPXT-Z_PE2m-m7_it/edit?usp=drive_link&ouid=105756276059427898200&rtpof=true&sd=true
+
+
+### A REALIZAR
+-terminar visual de checkout, componente de carrito y componente de comprar
+-notificacions por todo el sistema
+-reduccion de stock al realizar comprar
+-estilo de carrito en mobile

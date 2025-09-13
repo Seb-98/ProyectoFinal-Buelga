@@ -5,6 +5,7 @@ import { CartContext } from '../context/CartContext';
 import TallesList from './TallesList';
 import { useState } from 'react';
 import ItemTallesList from './ItemTallesList';
+import { NavLink } from 'react-router-dom';
 
 const ItemDetail = ({ dataDetail }) => {
     const precioInicial = dataDetail.precio;
@@ -48,7 +49,11 @@ const ItemDetail = ({ dataDetail }) => {
         setArrayStock([])
     }
     const onDeleteTalle = (talleStock) => {
-        deleteTalleItemCart(dataDetail.id, talleStock)
+        console.log(arrayStock, 'arrayStock')
+        console.log(talleStock, 'talleStock')
+        const updateArrayStock = arrayStock.filter((elem) => elem.talle !== talleStock)
+        setArrayStock(updateArrayStock)
+        // deleteTalleItemCart(dataDetail.id, talleStock)
     }
 
     return (
@@ -88,21 +93,26 @@ const ItemDetail = ({ dataDetail }) => {
                             <TallesList data={dataDetail.stock} select={selectTalle} selected={talle} />
                             <Card.Text className="mb-2 small tex t-muted">Stock {stockDisponible}</Card.Text>
 
-                            {!itemAdd &&
+                            {!itemAdd ?
                                 <>
                                     <ItemCount stock={stockDisponible} onAdd={onAddStock} talleSelect={talle} />
                                     <ItemTallesList data={arrayStock} handleDelete={onDeleteTalle}></ItemTallesList>
+                                    <Row className='d-flex justify-content-between mt-3'>
+                                        <Col>
+                                            <Button className='btn btn-dark' onClick={onAddItem} disabled={arrayStock.length === 0}>Confirmar</Button>
+                                        </Col>
+                                        <Col>
+                                            <Button className='btn-delete' onClick={() => onDelete(dataDetail.id)} disabled={arrayStock.length === 0}>Eliminar</Button>
+                                        </Col>
+                                    </Row>
+                                </>
+                                :
+                                <>
+                                    <NavLink className='btn btn-dark mt-2 ' to="/cart">
+                                        Ir al Carrito
+                                    </NavLink>
                                 </>
                             }
-
-                            <Row className='d-flex justify-content-between mt-3'>
-                                <Col>
-                                    <Button className='btn btn-dark ' onClick={onAddItem} disabled={arrayStock.length === 0}>Confirmar</Button>
-                                </Col>
-                                <Col>
-                                    <Button className='btn-delete' onClick={() => onDelete(dataDetail.id)} disabled={arrayStock.length === 0}>Eliminar</Button>
-                                </Col>
-                            </Row>
 
                         </Card.Body>
                     </Card>

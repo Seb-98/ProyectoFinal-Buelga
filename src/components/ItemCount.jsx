@@ -21,7 +21,7 @@ const ItemCount = ({ stock, onAdd, talleSelect }) => {
     }
 
     return (
-        <div className='d-flex mt-3 gap-3 mb-3'>
+        <div className='d-flex my-2 gap-3'>
             <div>
                 <Button className='btn btn-dark' disabled={talleSelect == ''} onClick={restar}>-</Button>
                 <span className='btn'>{count}</span>
