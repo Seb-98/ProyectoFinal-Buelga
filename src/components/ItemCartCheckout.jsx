@@ -47,9 +47,7 @@ const ItemCartCheckout = ({ data }) => {
                 <span className={haveDesc ? "text-danger p-0 m-0" : "p-0 m-0"}>
                     ${finalPrice}
                 </span>
-
             </Col>
-
         </Row>
     )
 }

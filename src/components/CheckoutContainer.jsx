@@ -23,9 +23,9 @@ const CheckoutContainer = () => {
     })
 
     const [idTransaction, setIdTransaction] = useState(null)
-    const { cart, resumeCart, totalCart, clearCart } = useContext(CartContext)
+    const { cart, resumeCart, clearCart, cartSummary } = useContext(CartContext)
 
-    console.log(cart)
+    // console.log(cart)
 
     const getDataClient = (e) => {
         setClientData({
@@ -47,7 +47,7 @@ const CheckoutContainer = () => {
                 return;
             }
 
-            const validateEndCheckout = await endCheckout(resumeCart(), totalCart(), resultValidateClient.id)
+            const validateEndCheckout = await endCheckout(resumeCart(), cartSummary.totalPay, resultValidateClient.id)
 
             if (validateEndCheckout == null) {
                 alert("Hubo un problema en el checkout");
@@ -109,7 +109,7 @@ const CheckoutContainer = () => {
                             </Form>
                         </Col>
                         <Col lg={4} md={4}>
-                            <SectionConfirmCheckout></SectionConfirmCheckout>
+                            <SectionConfirmCheckout summary={cartSummary} onDelete={clearCart} />
                         </Col>
                     </Row>
                 </Container>

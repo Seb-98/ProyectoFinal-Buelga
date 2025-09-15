@@ -1,14 +1,10 @@
 import { Button } from "react-bootstrap";
-import { CartContext } from "../context/CartContext";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-const SectionButtonsCart = () => {
-
-    const {clearCart} = useContext(CartContext)
+const SectionButtonsCart = ({ handleDeleteCart }) => {
 
     const deleteCart = () => {
-        clearCart();
+        handleDeleteCart();
     }
 
     return (

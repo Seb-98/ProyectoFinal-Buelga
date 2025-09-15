@@ -14,7 +14,7 @@ https://docs.google.com/presentation/d/1exV4skc2mwaoNNYXPXT-Z_PE2m-m7_it/edit?us
 
 
 ### A REALIZAR
--terminar visual de checkout, componente de carrito y componente de comprar
 -notificacions por todo el sistema
 -reduccion de stock al realizar comprar
 -estilo de carrito en mobile
+-boton de volver al carrito en checkout, boton de eliminar carrito con alert

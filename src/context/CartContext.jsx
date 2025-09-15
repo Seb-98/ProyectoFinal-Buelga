@@ -87,8 +87,24 @@ const CartProvider = ({ children }) => {
         return cantItem;
     }
 
+    const cartSummary = () => {
+        let total = totalCart();
+        let shippingPrice = Math.round(total * 0.15);
+        let taxesPrice = Math.round(total * 0.10);
+        let totalPay = total + shippingPrice + taxesPrice;
+
+        const cartDetails = {
+            shippingPrice: shippingPrice,
+            taxesPrice: taxesPrice,
+            total: total,
+            totalPay: totalPay
+        }
+
+        return cartDetails;
+    }
+
     return (
-        <CartContext.Provider value={{ cart, addItemCart, clearCart, deleteItemCart, deleteTalleItemCart, totalCart, resumeCart, itemCartStock, cartCount }}>
+        <CartContext.Provider value={{ cart, addItemCart, clearCart, deleteItemCart, deleteTalleItemCart, totalCart: totalCart(), resumeCart, itemCartStock, cartCount, cartSummary: cartSummary() }}>
             {children}
         </CartContext.Provider>
     )
