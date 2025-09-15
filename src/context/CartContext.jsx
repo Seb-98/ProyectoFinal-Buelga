@@ -62,6 +62,7 @@ const CartProvider = ({ children }) => {
         return sumaTotal;
     }
 
+    //funcion para insertar data resumida del cart,tiene el id, el precio del stock y el stock
     const resumeCart = () => {
         const resumeCart = cart.map((elem) => {
             const unitPrice = elem.oferta ? elem.precio * elem.porcDesc : elem.precio

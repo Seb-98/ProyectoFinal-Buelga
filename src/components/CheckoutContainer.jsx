@@ -2,6 +2,8 @@ import { useState, useContext } from "react";
 import { Button, Form, Row, Container, Col } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
 import { endCheckout, validateClient } from "../service/checkoutService";
+import SectionCartCheckout from "./SectionCartCheckout";
+import SectionConfirmCheckout from "./SectionConfirmCheckout";
 
 const CheckoutContainer = () => {
     const [clientData, setClientData] = useState({
@@ -21,7 +23,9 @@ const CheckoutContainer = () => {
     })
 
     const [idTransaction, setIdTransaction] = useState(null)
-    const { resumeCart, totalCart, clearCart } = useContext(CartContext)
+    const { cart, resumeCart, totalCart, clearCart } = useContext(CartContext)
+
+    console.log(cart)
 
     const getDataClient = (e) => {
         setClientData({
@@ -82,6 +86,9 @@ const CheckoutContainer = () => {
                 <Container>
                     <Row>
                         <Col lg={4} md={4}>
+                            <SectionCartCheckout dataCart={cart} />
+                        </Col>
+                        <Col lg={4} md={4}>
                             <Form className="d-flex flex-wrap" onSubmit={(e) => sendDataClient(e)}>
                                 <Form.Label className="mb-0 fw-bold">Nombre</Form.Label> <span className="text-danger">*</span>
                                 <Form.Control className={`form-control mb-3 ${!validateField.Nombre && 'border border-danger'}`} placeholder="Nombre" aria-label="Nombre" name="Nombre" type="text" onChange={getDataClient}></Form.Control>
@@ -100,6 +107,9 @@ const CheckoutContainer = () => {
 
                                 <Button variant={"dark"} type="submit" className="mt-3">Confirmar Compra</Button>
                             </Form>
+                        </Col>
+                        <Col lg={4} md={4}>
+                            <SectionConfirmCheckout></SectionConfirmCheckout>
                         </Col>
                     </Row>
                 </Container>

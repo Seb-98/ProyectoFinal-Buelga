@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 const ItemDetail = ({ dataDetail }) => {
     const precioInicial = dataDetail.precio;
     const precioFinal = dataDetail.oferta ? precioInicial * dataDetail.porcDesc : precioInicial;
-    const { addItemCart, deleteItemCart, cart, deleteTalleItemCart, itemCartStock } = useContext(CartContext);
+    const { addItemCart, deleteItemCart, itemCartStock } = useContext(CartContext);
     const [talle, setTalle] = useState('');
     const [stockDisponible, setStockDisponible] = useState('');
     const [arrayStock, setArrayStock] = useState(itemCartStock(dataDetail.id));
@@ -48,12 +48,10 @@ const ItemDetail = ({ dataDetail }) => {
         deleteItemCart(id);
         setArrayStock([])
     }
+    
     const onDeleteTalle = (talleStock) => {
-        console.log(arrayStock, 'arrayStock')
-        console.log(talleStock, 'talleStock')
         const updateArrayStock = arrayStock.filter((elem) => elem.talle !== talleStock)
         setArrayStock(updateArrayStock)
-        // deleteTalleItemCart(dataDetail.id, talleStock)
     }
 
     return (
