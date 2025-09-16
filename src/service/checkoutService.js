@@ -5,7 +5,7 @@ import { serverTimestamp } from "firebase/database";
 //funcion que valida q si no existe cliente, lo inserta
 export async function validateClient(data) {
     try {
-        const clientCollection = query(collection(db, 'clients'), where("Email", "==", data.Email));
+        const clientCollection = query(collection(db, 'clients'), where("email", "==", data.email));
 
         const res = await getDocs(clientCollection);
 
