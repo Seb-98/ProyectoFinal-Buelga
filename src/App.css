@@ -30,9 +30,19 @@
     margin-right: 5px;
 }
 
+    .itemCartImg{
+        height: 205px !important;
+            max-width: 100%;
+
+    }
+
 @media (max-width: 768px) {
     .itemCart {
         width: 700px;
         height: 160px;
+    }
+
+    .itemCartImg{
+        height: 145px !important;
     }
 }

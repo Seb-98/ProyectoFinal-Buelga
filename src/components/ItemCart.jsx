@@ -46,8 +46,8 @@ const ItemCart = ({ data }) => {
             onMouseOver={handleHover}
             onMouseLeave={handleLeave}
         >
-            <Col xs={5} md={4}>
-                <Image src={data.img} alt={data.nombre} fluid rounded />
+            <Col xs={5} md={4} className="p-0">
+                <Image src={data.img} alt={data.nombre} rounded className="itemCartImg"/>
             </Col>
             <Col xs={4} md={5} className="d-flex flex-column justify-content-between">
                 <h5>{data.nombre}</h5>
