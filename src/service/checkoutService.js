@@ -1,5 +1,5 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { db, insertSingleItem } from '../service/firebase';
+import { collection, getDocs, query, where, updateDoc, doc } from "firebase/firestore";
+import { db, insertSingleItem, getSingleItem } from '../service/firebase';
 import { serverTimestamp } from "firebase/database";
 
 //funcion que valida q si no existe cliente, lo inserta
@@ -39,5 +39,36 @@ export async function endCheckout(data, total, idClient) {
     } catch {
         console.error("Error en el checkout:", error);
         return null;
+    }
+}
+
+export async function updateStock(resumeCart) {
+
+    try {
+        for (const product of resumeCart) {     //foreach no conviene con async
+
+            let arrayProduct = await getSingleItem(product.id, "products");     //obtengo el producto
+
+            let updatedStock = arrayProduct.stock.map((item) => {       //recorro stock de producto
+                let cartItem = product.articles.stock.find(            //busca el talle del producto en el talle del carrito
+                    (elem) => elem.talle === item.talle
+                );
+
+                if (cartItem) {     //si existe el talle del producto en el carrito hace la resta sino devuelve el item normal
+                    return {
+                        ...item,
+                        cantidad: item.cantidad - cartItem.quantity
+                    };
+                }
+                return item;
+            });
+
+            const productRef = doc(db, "products", product.id);
+            await updateDoc(productRef, { stock: updatedStock });
+
+            console.log(`Stock actualizado para  el prod ${product.id}`);
+        }
+    } catch (error) {
+        console.error("Error actualizando stock:", error);
     }
 }
