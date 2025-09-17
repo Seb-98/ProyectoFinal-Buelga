@@ -5,11 +5,14 @@ import { endCheckout, validateClient } from "../service/checkoutService";
 import SectionCartCheckout from "./SectionCartCheckout";
 import SectionConfirmCheckout from "./SectionConfirmCheckout";
 import InputsCheckout from "./InputsCheckout";
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2';
+import SuccessCheckout from "./SuccessCheckout";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutContainer = () => {
-    const {register, handleSubmit, formState: { errors }} = useForm()
-
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const navigate = useNavigate();
     const [idTransaction, setIdTransaction] = useState(null)
     const { cart, resumeCart, clearCart, cartSummary } = useContext(CartContext)
 
@@ -19,28 +22,52 @@ const CheckoutContainer = () => {
 
         const resultValidateClient = await validateClient(data);
 
-        if (resultValidateClient == null) {
-            alert("Hubo un problema al validar el cliente");
+        if (!resultValidateClient) {
+            Swal.fire({
+                icon: "error",
+                title: "Hubo un problema al validar el cliente",
+            });
             return;
         }
+
+        Swal.fire({
+            title: "Procesando compra...",
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
 
         const validateEndCheckout = await endCheckout(resumeCart(), cartSummary.totalPay, resultValidateClient.id)
 
-        if (validateEndCheckout == null) {
-            alert("Hubo un problema en el checkout");
+        Swal.close();
+
+        if (!validateEndCheckout) {
+            Swal.fire({
+                icon: "error",
+                title: "Hubo un problema en el checkout",
+            });
             return;
-        } else {
-            setIdTransaction(validateEndCheckout.id)
-            clearCart();
-            alert("Exito en la compra")
         }
     }
+
+    const handleDeleteCart = () => {
+        Swal.fire({
+            title: "Seguro desea vaciar el carrito?",
+            showCancelButton: true,
+            confirmButtonText: "Eliminar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                clearCart();
+                navigate("/");
+            }
+        });
+    };
 
     return (
         <>
             {idTransaction ?
-                // hacer componente
-                <div>Compra realizada con exito! {idTransaction}</div>
+                <SuccessCheckout idTransaction={idTransaction} />
                 :
                 <Container>
                     <Form className="d-flex flex-wrap" onSubmit={handleSubmit(startCheckout)}>
@@ -49,10 +76,10 @@ const CheckoutContainer = () => {
                                 <SectionCartCheckout dataCart={cart} />
                             </Col>
                             <Col lg={4} md={4}>
-                                <InputsCheckout registerForm={register} errorsForm={errors}/>
+                                <InputsCheckout registerForm={register} errorsForm={errors} />
                             </Col>
                             <Col lg={4} md={4}>
-                                <SectionConfirmCheckout summary={cartSummary} onDelete={clearCart} />
+                                <SectionConfirmCheckout summary={cartSummary} onDelete={handleDeleteCart} />
                             </Col>
                         </Row>
                     </Form>

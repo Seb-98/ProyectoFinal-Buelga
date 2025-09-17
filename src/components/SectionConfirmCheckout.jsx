@@ -3,6 +3,11 @@ import { Button } from "react-bootstrap";
 
 const SectionConfirmCheckout = ({ summary, onDelete }) => {
 
+    const handleClickDelete = (e) => {
+        e.preventDefault();
+        onDelete();
+    };
+
     return (
         <div className="border rounded p-2 mt-2" style={{ maxHeight: "500px" }}>
             <div className="bg-secondary text-white rounded p-2 mb-3">
@@ -37,7 +42,7 @@ const SectionConfirmCheckout = ({ summary, onDelete }) => {
 
             <div className="d-flex justify-content-between gap-2 px-2">
                 <Link to="/cart" className="btn btn-primary">Volver</Link>
-                <Link to="/" className="btn btn-delete" onClick={onDelete}>Eliminar</Link>
+                <Link to="/" className="btn btn-delete" onClick={handleClickDelete}>Eliminar</Link>
                 <Button variant={"dark"} type="submit">Confirmar</Button>
             </div>
         </div>

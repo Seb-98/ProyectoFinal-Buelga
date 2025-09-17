@@ -1,12 +1,12 @@
 import { Button } from "react-bootstrap";
 import { RxCross2 } from "react-icons/rx";
 
-const ItemTallesList = ({ data, handleDelete }) => {
+const ItemTallesList = ({ data, handleDelete, typeFlex }) => {
 
     return (
-        <div className="d-flex flex-wrap gap-2 mt-2" style={{ height: '30px' }}>
+        <div className={`d-flex ${typeFlex} gap-2 mt-2`}>
             {data.map((elem) => (
-                <div key={elem.talle} className="d-flex justify-content-start align-items-center border rounded px-2 py-1 itemTalleList">
+                <div key={elem.talle} className="d-flex  justify-content-start align-items-center border rounded px-2 py-1 itemTalleList">
                     <span className="me-2"><b>{elem.talle}</b> ({elem.quantity})</span>
                     <Button
                         variant="dark"

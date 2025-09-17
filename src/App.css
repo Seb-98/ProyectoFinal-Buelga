@@ -23,9 +23,16 @@
     border-color: black !important;
 }
 
-.iconCard{
+.iconCard {
     color: white;
     width: 25px;
     height: 25px;
     margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .itemCart {
+        width: 700px;
+        height: 160px;
+    }
 }

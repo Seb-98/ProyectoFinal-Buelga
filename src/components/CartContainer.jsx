@@ -14,8 +14,8 @@ const CartContainer = () => {
 
     return (
         <Container>
-            <div className="d-flex flex-wrap align-items-center justify-content-center gap-3 bg-dark text-white mb-3">
-                <h4>Total ${totalCart}</h4>
+            <div className="d-flex justify-content-center bg-dark text-white mb-3 mx-auto rounded p-1" style={{ width: '200px' }}>
+                <h4 className="mb-0">Total ${totalCart}</h4>
             </div>
             <ItemCartList dataCartList={cart} />
             <SectionButtonsCart handleDeleteCart={clearCart} />
