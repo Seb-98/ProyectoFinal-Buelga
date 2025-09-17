@@ -1,20 +1,20 @@
 import { Row, Col, Button, Image } from "react-bootstrap";
-import ItemTallesList from "./ItemTallesList";
+import ItemSizesList from "./ItemSizesList";
 import { CartContext } from "../context/CartContext";
 import { useContext, useState } from 'react'
 import Swal from 'sweetalert2'
 
 const ItemCart = ({ data }) => {
     const [boxShadow, setBoxShadow] = useState('');
-    const unitInitialPrice = data.precio;
-    const unitFinalPrice = data.oferta ? unitInitialPrice * data.porcDesc : unitInitialPrice;
+    const unitInitialPrice = data.price;
+    const unitFinalPrice = data.onSale ? unitInitialPrice * data.discPerc : unitInitialPrice;
     const quantity = data.selectStock.reduce((acumulador, elem) => acumulador + elem.quantity, 0);
-    const initialPrice = data.precio * quantity;
-    const finalPrice = data.oferta ? initialPrice * data.porcDesc : initialPrice;
-    const { deleteTalleItemCart, deleteItemCart } = useContext(CartContext)
+    const initialPrice = data.price * quantity;
+    const finalPrice = data.onSale ? initialPrice * data.discPerc : initialPrice;
+    const { deleteSizeItemCart, deleteItemCart } = useContext(CartContext)
 
-    const onDeleteTalle = (talleStock) => {
-        deleteTalleItemCart(data.id, talleStock)
+    const onDeleteSize = (sizeStock) => {
+        deleteSizeItemCart(data.id, sizeStock)
     }
 
     const onDelete = (id) => {
@@ -47,15 +47,15 @@ const ItemCart = ({ data }) => {
             onMouseLeave={handleLeave}
         >
             <Col xs={5} md={4} className="p-0">
-                <Image src={data.img} alt={data.nombre} rounded className="itemCartImg"/>
+                <Image src={data.img} alt={data.name} rounded className="itemCartImg"/>
             </Col>
             <Col xs={4} md={5} className="d-flex flex-column justify-content-between">
-                <h5>{data.nombre}</h5>
-                <ItemTallesList data={data.selectStock} handleDelete={onDeleteTalle} typeFlex={"flex-column"}></ItemTallesList>
+                <h5>{data.name}</h5>
+                <ItemSizesList data={data.selectStock} handleDelete={onDeleteSize} typeFlex={"flex-column"}></ItemSizesList>
             </Col>
             <Col xs={3} md={3} className="d-flex justify-content-center align-items-center flex-column ">
 
-                {data.oferta && (
+                {data.onSale && (
                     <span className="text-decoration-line-through text-muted p-0 m-0 small">
                         ${unitInitialPrice}
                     </span>
@@ -64,12 +64,12 @@ const ItemCart = ({ data }) => {
                     ${unitFinalPrice}
                 </span>
 
-                {data.oferta && (
+                {data.onSale && (
                     <h5 className="text-decoration-line-through m-0">
                         ${initialPrice}
                     </h5>
                 )}
-                <h5 className={data.oferta ? "text-danger p-0 m-0" : "p-0 m-0"}>
+                <h5 className={data.onSale ? "text-danger p-0 m-0" : "p-0 m-0"}>
                     ${finalPrice}
                 </h5>
 

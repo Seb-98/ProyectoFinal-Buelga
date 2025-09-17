@@ -2,11 +2,11 @@ import { Card } from 'react-bootstrap';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Item({ dataCamiseta }) {
+function Item({ dataShirt }) {
     const [boxShadow, setBoxShadow] = useState('');
 
-    const precioInicial = dataCamiseta.precio;
-    const precioFinal = dataCamiseta.oferta ? precioInicial * dataCamiseta.porcDesc : precioInicial;
+    const initialPrice = dataShirt.price;
+    const finalPrice = dataShirt.onSale ? initialPrice * dataShirt.discPerc : initialPrice;
 
     const handleHover = () => {
         setBoxShadow('0 8px 20px rgba(0, 0, 0, 0.55)');
@@ -25,30 +25,30 @@ function Item({ dataCamiseta }) {
             }}
             onMouseOver={handleHover}
             onMouseLeave={handleLeave}>
-            <Card.Img variant="top" src={dataCamiseta.img} alt={dataCamiseta.nombre}/>
+            <Card.Img variant="top" src={dataShirt.img} alt={dataShirt.name}/>
             <Card.Body>
-                <Card.Title>{dataCamiseta.nombre}</Card.Title>
+                <Card.Title>{dataShirt.name}</Card.Title>
 
                 <Card.Text className="mb-1">
                     Precio:&nbsp;
-                    {dataCamiseta.oferta ? 
+                    {dataShirt.onSale ? 
                     <>
-                        <span style={{textDecorationLine:'line-through' }}>${precioInicial}</span> &nbsp;
-                        <span style={{color:'red' }}>${precioFinal}</span>
+                        <span style={{textDecorationLine:'line-through' }}>${initialPrice}</span> &nbsp;
+                        <span style={{color:'red' }}>${finalPrice}</span>
                     </> :
-                        <span>${precioFinal}</span>    
+                        <span>${finalPrice}</span>    
                     }
 
                 </Card.Text>
                 <Card.Text className="mb-1">
-                    Temporada: {dataCamiseta.temporada}
+                    Temporada: {dataShirt.season}
                 </Card.Text>
                 <Card.Text className="mb-1 small text-muted">
-                    {dataCamiseta.categoria}
+                    {dataShirt.category}
                 </Card.Text>
 
                 <div className="d-flex justify-content-center mt-3">
-                    <Link to={`/detail/${dataCamiseta.id}`} className="btn btn-dark">Comprar</Link>
+                    <Link to={`/detail/${dataShirt.id}`} className="btn btn-dark">Comprar</Link>
                 </div>
             </Card.Body>
         </Card>

@@ -17,9 +17,9 @@ const ItemListContainer = () => {
         let productsCollection = [];
         if (category) {
             if (category === "Oferta") {
-                productsCollection = query(collection(db, 'products'), where("oferta", "==", true));
+                productsCollection = query(collection(db, 'products'), where("onSale", "==", true));
             } else {
-                productsCollection = query(collection(db, 'products'), where("categoria", "==", category));
+                productsCollection = query(collection(db, 'products'), where("category", "==", category));
             }
         } else {
             productsCollection = collection(db, 'products');

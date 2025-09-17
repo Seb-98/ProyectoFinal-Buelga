@@ -3,27 +3,25 @@ import { Row, Col, Image } from "react-bootstrap";
 const ItemCartCheckout = ({ data }) => {
     const totalQuantity = data.selectStock.reduce((acumulador, item) => acumulador + item.quantity, 0)
 
-    const haveDesc = data.oferta;
-    const unitInitialPrice = data.precio;
-    const unitFinalPrice = haveDesc ? data.precio * data.porcDesc : unitInitialPrice;
-    const initialPrice = data.precio * totalQuantity;
-    const finalPrice = haveDesc ? initialPrice * data.porcDesc : initialPrice;
-
-
+    const haveDesc = data.onSale;
+    const unitInitialPrice = data.price;
+    const unitFinalPrice = haveDesc ? data.price * data.discPerc : unitInitialPrice;
+    const initialPrice = data.price * totalQuantity;
+    const finalPrice = haveDesc ? initialPrice * data.discPerc : initialPrice;
 
     return (
         <Row className="border rounded mb-2 p-1 g-0 align-items-center" key={data.id} style={{ minHeight: "115px" }} >
             <Col xs={4} className="d-flex justify-content-start">
-                <Image src={data.img} alt={data.nombre} fluid rounded className="img-fluid object-fit-contain" style={{ maxHeight: "100px" }}
+                <Image src={data.img} alt={data.name} fluid rounded className="img-fluid object-fit-contain" style={{ maxHeight: "100px" }}
                 />
             </Col>
 
             <Col className="d-flex flex-column justify-content-start align-items-center">
-                <p className="fw-bold mb-1">{data.nombre}</p>
+                <p className="fw-bold mb-1">{data.name}</p>
                 {data.selectStock.map((item) => (
-                    <div key={`${data.id}-${item.talle}`} className="small">
+                    <div key={`${data.id}-${item.size}`} className="small">
                         <span>Talle </span>
-                        <span className="fw-bold">{item.talle} </span>
+                        <span className="fw-bold">{item.size} </span>
                         <span>({item.quantity})</span>
                     </div>
                 ))}

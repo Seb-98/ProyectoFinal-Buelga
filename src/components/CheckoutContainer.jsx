@@ -20,6 +20,14 @@ const CheckoutContainer = () => {
 
     const startCheckout = async (data) => {
 
+        Swal.fire({
+            title: "Procesando compra...",
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
+
         const resultValidateClient = await validateClient(data);
 
         if (!resultValidateClient) {
@@ -29,14 +37,6 @@ const CheckoutContainer = () => {
             });
             return;
         }
-
-        Swal.fire({
-            title: "Procesando compra...",
-            allowOutsideClick: false,
-            didOpen: () => {
-                Swal.showLoading();
-            }
-        });
 
         const validateEndCheckout = await endCheckout(resumeCart(), cartSummary.totalPay, resultValidateClient.id)
 

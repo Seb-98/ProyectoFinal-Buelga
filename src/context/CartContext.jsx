@@ -26,10 +26,10 @@ const CartProvider = ({ children }) => {
         setCart(cart.filter((elem) => elem.id !== id))
     }
 
-    const deleteTalleItemCart = (id, talle) => {
+    const deleteSizeItemCart = (id, size) => {
         const updateCart = cart.map((elem) =>
             //si es el mismo id, devuelve el obj y la propiedad selectStock con filtro de talle
-            elem.id === id ? { ...elem, selectStock: elem.selectStock.filter((elem) => elem.talle !== talle) } : elem
+            elem.id === id ? { ...elem, selectStock: elem.selectStock.filter((elem) => elem.size !== size) } : elem
         )
 
         let count = 0;
@@ -54,9 +54,9 @@ const CartProvider = ({ children }) => {
         let sumaTotal = 0;
 
         cart.map((elem) => {
-            let cantidad = 0;
-            cantidad = elem.selectStock.reduce((acumulador, item) => acumulador + item.quantity, 0)
-            sumaTotal += elem.oferta ? (elem.precio * cantidad) * elem.porcDesc : elem.precio * cantidad;
+            let quantity = 0;
+            quantity = elem.selectStock.reduce((acumulador, item) => acumulador + item.quantity, 0)
+            sumaTotal += elem.onSale ? (elem.price * quantity) * elem.discPerc : elem.price * quantity;
         })
 
         return sumaTotal;
@@ -65,7 +65,7 @@ const CartProvider = ({ children }) => {
     //funcion para insertar data resumida del cart,tiene el id, el precio del stock y el stock
     const resumeCart = () => {
         const resumeCart = cart.map((elem) => {
-            const unitPrice = elem.oferta ? elem.precio * elem.porcDesc : elem.precio
+            const unitPrice = elem.onSale ? elem.price * elem.discPerc : elem.price
             return { id: elem.id, articles: { unitPrice: unitPrice, stock: elem.selectStock } }
         })
 
@@ -104,7 +104,7 @@ const CartProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{ cart, addItemCart, clearCart, deleteItemCart, deleteTalleItemCart, totalCart: totalCart(), resumeCart, itemCartStock, cartCount, cartSummary: cartSummary() }}>
+        <CartContext.Provider value={{ cart, addItemCart, clearCart, deleteItemCart, deleteSizeItemCart, totalCart: totalCart(), resumeCart, itemCartStock, cartCount, cartSummary: cartSummary() }}>
             {children}
         </CartContext.Provider>
     )

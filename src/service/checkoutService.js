@@ -51,13 +51,13 @@ export async function updateStock(resumeCart) {
 
             let updatedStock = arrayProduct.stock.map((item) => {       //recorro stock de producto
                 let cartItem = product.articles.stock.find(            //busca el talle del producto en el talle del carrito
-                    (elem) => elem.talle === item.talle
+                    (elem) => elem.size === item.size
                 );
 
                 if (cartItem) {     //si existe el talle del producto en el carrito hace la resta sino devuelve el item normal
                     return {
                         ...item,
-                        cantidad: item.cantidad - cartItem.quantity
+                        quantity: item.quantity - cartItem.quantity
                     };
                 }
                 return item;

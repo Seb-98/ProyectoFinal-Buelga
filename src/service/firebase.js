@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 import { addDoc, collection, doc, getDoc, getFirestore } from "firebase/firestore";
-import { getProductos } from "../mocks/AsyncMock";
+import { getProducts } from "../mocks/AsyncMock";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -56,7 +56,7 @@ export async function addListProduct() {
     const itemCollectionRef = collection(db, 'products');
 
     let arrayProductos = []
-    getProductos()
+    getProducts()
         .then((res) => {
             arrayProductos = res;
 
