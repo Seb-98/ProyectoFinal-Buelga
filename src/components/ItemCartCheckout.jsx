@@ -17,7 +17,7 @@ const ItemCartCheckout = ({ data }) => {
             </Col>
 
             <Col className="d-flex flex-column justify-content-start align-items-center">
-                <p className="fw-bold mb-1">{data.name}</p>
+                <p className="fw-bold mb-1 text-center">{data.name}</p>
                 {data.selectStock.map((item) => (
                     <div key={`${data.id}-${item.size}`} className="small">
                         <span>Talle </span>

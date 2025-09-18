@@ -102,7 +102,7 @@ const ItemDetail = ({ dataDetail }) => {
                             <Card.Text className="mb-2">Seleccionar Talle </Card.Text>
 
                             <SizesList data={dataDetail.stock} select={selectSize} selected={size} />
-                            <Card.Text className="mb-2 small tex t-muted">Stock {availableStock}</Card.Text>
+                            <Card.Text className="mb-0 small text-muted">Stock {availableStock}</Card.Text>
 
                             {!itemAdd ?
                                 <>

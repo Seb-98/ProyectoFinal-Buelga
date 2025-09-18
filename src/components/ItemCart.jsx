@@ -49,11 +49,11 @@ const ItemCart = ({ data }) => {
             <Col xs={5} md={4} className="p-0">
                 <Image src={data.img} alt={data.name} rounded className="itemCartImg"/>
             </Col>
-            <Col xs={4} md={5} className="d-flex flex-column justify-content-between">
-                <h5>{data.name}</h5>
+            <Col xs={4} md={5} className="d-flex flex-column align-items-center justify-content-between  my-auto">
+                <span className="nameShirtItemCart">{data.name}</span>
                 <ItemSizesList data={data.selectStock} handleDelete={onDeleteSize} typeFlex={"flex-column"}></ItemSizesList>
             </Col>
-            <Col xs={3} md={3} className="d-flex justify-content-center align-items-center flex-column ">
+            <Col xs={3} md={3} className="d-flex justify-content-center align-items-center flex-column my-auto">
 
                 {data.onSale && (
                     <span className="text-decoration-line-through text-muted p-0 m-0 small">
@@ -65,13 +65,13 @@ const ItemCart = ({ data }) => {
                 </span>
 
                 {data.onSale && (
-                    <h5 className="text-decoration-line-through m-0">
+                    <span className="text-decoration-line-through m-0 priceTextItemCart">
                         ${initialPrice}
-                    </h5>
+                    </span>
                 )}
-                <h5 className={data.onSale ? "text-danger p-0 m-0" : "p-0 m-0"}>
+                <span className={data.onSale ? "text-danger p-0 m-0 priceTextItemCart" : "p-0 m-0 priceTextItemCart"}>
                     ${finalPrice}
-                </h5>
+                </span>
 
                 <Button className="mt-2 btn-delete" size="xm" onClick={() => onDelete(data.id)}>
                     Eliminar
