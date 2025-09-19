@@ -9,7 +9,7 @@ const SectionConfirmCheckout = ({ summary, onDelete }) => {
     };
 
     return (
-        <div className="border rounded p-2 mt-2" style={{ maxHeight: "500px" }}>
+        <div className="border rounded p-2 mt-2">
             <div className="bg-secondary text-white rounded p-2 mb-3">
                 <p className="m-0 text-center">Al realizar la compra nos comunicaremos para organizar detalles del envio.
                     Enviaremos un mensaje de <span className="fw-bold">Whatsapp</span> al numero ingresado, en caso de no haber una respuesta en un lapso de 48hs,
@@ -40,7 +40,7 @@ const SectionConfirmCheckout = ({ summary, onDelete }) => {
                 </div>
             </div>
 
-            <div className="d-flex justify-content-between gap-2 px-2">
+            <div className="d-flex flex-wrap justify-content-between gap-1 px-2">
                 <Link to="/cart" className="btn btn-primary">Volver</Link>
                 <Link to="/" className="btn btn-delete" onClick={handleClickDelete}>Eliminar</Link>
                 <Button variant={"dark"} type="submit">Confirmar</Button>
