@@ -4,7 +4,7 @@ import { useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext';
 import SizesList from './SizesList';
 import ItemSizesList from './ItemSizesList';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 const ItemDetail = ({ dataDetail }) => {
@@ -105,7 +105,7 @@ const ItemDetail = ({ dataDetail }) => {
                             {!validateStock.length || totalStock === 0 ?
                                 <>
                                     <h4 className="fw-bold">No hay stock para esta camiseta</h4>
-                                    <NavLink to="/" className="btn btn-dark">Volver al menu</NavLink>
+                                    <Link to="/" className="btn btn-dark">Volver al menu</Link>
                                 </>
                                 :
                                 <>
@@ -128,8 +128,8 @@ const ItemDetail = ({ dataDetail }) => {
                                         </>
                                         :
                                         <div className='d-flex justify-content-start gap-2 mt-3'>
-                                            <NavLink className='btn btn-dark' to="/cart"> Ir al Carrito</NavLink>
-                                            <NavLink to="/" className="btn btn-primary">Volver al menu</NavLink>
+                                            <Link className='btn btn-dark' to="/cart">Ir al Carrito</Link>
+                                            <Link to="/" className="btn btn-primary">Volver al menu</Link>
                                         </div>
                                     }
                                 </>

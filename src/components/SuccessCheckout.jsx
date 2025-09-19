@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SuccessCheckout = ({idTransaction}) => {
     return (
@@ -6,9 +6,9 @@ const SuccessCheckout = ({idTransaction}) => {
             <div className="border rounded p-4 m-3 text-center">
                 <h3>Compra realizada con exito! </h3>
                 <h4>ID de compra: {idTransaction}</h4>
-                <NavLink className="btn btn-dark mt-2" to="/">
+                <Link className="btn btn-dark mt-2" to="/">
                     Ir al inicio
-                </NavLink>
+                </Link>
             </div>
         </div>
     );
