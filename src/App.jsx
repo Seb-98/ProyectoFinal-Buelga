@@ -1,13 +1,13 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NotFoundPage from './components/NotFoundPage';
+import NotFoundPage from './components/layout/NotFoundPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ContainerPage from './components/ContainerPage';
-import ItemListContainer from './components/ItemListContainer';
-import ItemDetailContainer from './components/ItemDetailContainer';
+import ContainerPage from './components/layout/ContainerPage';
+import ItemListContainer from './components/item/ItemListContainer';
+import ItemDetailContainer from './components/item/ItemDetailContainer';
 import CartProvider from './context/CartContext';
-import CartContainer from './components/CartContainer';
-import CheckoutContainer from './components/CheckoutContainer';
+import CartContainer from './components/cart/CartContainer';
+import CheckoutContainer from './components/checkout/CheckoutContainer';
 
 function App() {
 

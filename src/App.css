@@ -47,6 +47,14 @@
     line-height: 1.2;
 }
 
+.nav-link-header {
+    color: white !important;
+}
+
+.nav-link-header:hover{
+    color: grey !important;
+}
+
 @media (max-width: 768px) {
     .itemCart {
         height: 160px;

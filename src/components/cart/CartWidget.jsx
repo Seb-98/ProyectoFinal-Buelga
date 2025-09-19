@@ -1,7 +1,7 @@
 import { FaShoppingCart } from "react-icons/fa";
 import Badge from 'react-bootstrap/Badge';
 import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
+import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 
 const CartWidget = () => {

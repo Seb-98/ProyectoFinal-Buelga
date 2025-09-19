@@ -1,6 +1,6 @@
 import { Row, Col, Button, Image } from "react-bootstrap";
-import ItemSizesList from "./ItemSizesList";
-import { CartContext } from "../context/CartContext";
+import ItemSizesList from "../sizes/ItemSizesList";
+import { CartContext } from "../../context/CartContext";
 import { useContext, useState } from 'react'
 import Swal from 'sweetalert2'
 

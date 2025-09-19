@@ -1,9 +1,9 @@
 import { Container, Card, Row, Col, Button } from 'react-bootstrap';
 import ItemCount from './ItemCount';
 import { useContext, useState } from 'react';
-import { CartContext } from '../context/CartContext';
-import SizesList from './SizesList';
-import ItemSizesList from './ItemSizesList';
+import { CartContext } from '../../context/CartContext';
+import SizesList from '../sizes/SizesList';
+import ItemSizesList from '../sizes/ItemSizesList';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
 

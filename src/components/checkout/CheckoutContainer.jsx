@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Form, Row, Container, Col } from "react-bootstrap";
-import { CartContext } from "../context/CartContext";
-import { endCheckout, validateClient, updateStock } from "../service/checkoutService";
+import { CartContext } from "../../context/CartContext";
+import { endCheckout, validateClient, updateStock } from "../../service/checkoutService";
 import SectionCartCheckout from "./SectionCartCheckout";
 import SectionConfirmCheckout from "./SectionConfirmCheckout";
 import InputsCheckout from "./InputsCheckout";
