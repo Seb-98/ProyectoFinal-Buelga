@@ -16,8 +16,6 @@ const CheckoutContainer = () => {
     const [idTransaction, setIdTransaction] = useState(null)
     const { cart, resumeCart, clearCart, cartSummary } = useContext(CartContext)
 
-    // console.log(cart)
-
     const startCheckout = async (data) => {
 
         Swal.fire({
@@ -31,28 +29,31 @@ const CheckoutContainer = () => {
         const resultValidateClient = await validateClient(data);
 
         if (!resultValidateClient) {
+            Swal.close();
             Swal.fire({
                 icon: "error",
                 title: "Hubo un problema al validar el cliente",
+                confirmButtonText: "OK"
             });
             return;
         }
 
         const validateEndCheckout = await endCheckout(resumeCart(), cartSummary.totalPay, resultValidateClient.id)
 
-        Swal.close();
-
         if (!validateEndCheckout) {
+            Swal.close();
             Swal.fire({
                 icon: "error",
-                title: "Hubo un problema en el checkout",
+                title: "Hubo un problema al realizar la compra",
+                text: "YPor favor intente de nuevo mas tarde",
             });
             return;
         }
         else {
             await updateStock(resumeCart());
-            setIdTransaction(validateEndCheckout.id)
             clearCart();
+            Swal.close();
+            setIdTransaction(validateEndCheckout.id)
         }
     }
 

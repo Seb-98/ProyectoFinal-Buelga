@@ -7,25 +7,25 @@
 Clonar el proyecto
 
 ```bash
-  git clone https://github.com/Seb-98/ProyectoFinal-Buelga
+git clone https://github.com/Seb-98/ProyectoFinal-Buelga
 ```
 
 Ir al directorio del proyecto
 
 ```bash
-  cd ProyectoFinalBuelga
+cd ProyectoFinal-Buelga
 ```
 
 Instalar dependencias
 
 ```bash
-  npm install
+npm install
 ```
 
 Iniciar
 
 ```bash
-  npm run dev
+npm run dev
 ```
 
 ## Librerías utilizadas

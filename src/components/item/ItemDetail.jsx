@@ -117,12 +117,15 @@ const ItemDetail = ({ dataDetail }) => {
                                         <>
                                             <ItemCount stock={availableStock} onAdd={onAddStock} sizeSelect={size} />
                                             <ItemSizesList data={arrayStock} handleDelete={onDeleteSize} typeFlex={"flex-wrap"}></ItemSizesList>
-                                            <Row className='d-flex justify-content-start gap-2 mt-3'>
+                                            <Row className='d-flex justify-content-start gap-1 mt-3'>
                                                 <Col>
                                                     <Button className='btn btn-dark' onClick={onAddItem} disabled={arrayStock.length === 0}>Confirmar</Button>
                                                 </Col>
                                                 <Col>
                                                     <Button className='btn-delete' onClick={() => onDelete(dataDetail.id)} disabled={arrayStock.length === 0}>Eliminar</Button>
+                                                </Col>
+                                                <Col>
+                                                    <Link to="/" className="btn btn-primary">Volver al menu</Link>
                                                 </Col>
                                             </Row>
                                         </>
