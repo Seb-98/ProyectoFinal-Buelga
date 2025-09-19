@@ -7,7 +7,7 @@
 Clonar el proyecto
 
 ```bash
-  git clone https://github.com/Seb-98/ProyectoFinalBuelga/tree/main/js
+  git clone https://github.com/Seb-98/ProyectoFinal-Buelga
 ```
 
 Ir al directorio del proyecto
@@ -38,15 +38,3 @@ Iniciar
 
 ---
 💻 Desarrollado por **Sebastian Buelga**
-
-### HACER MARKDOWNS
-https://www.markdownguide.org/cheat-sheet/
-https://www.makeareadme.com/
-https://readme.so/es/editor
-
-### CONSIGNAS PROYECTO FINAL
-https://docs.google.com/presentation/d/1exV4skc2mwaoNNYXPXT-Z_PE2m-m7_it/edit?usp=drive_link&ouid=105756276059427898200&rtpof=true&sd=true
-
-
-### A REALIZAR
--reduccion de stock al realizar comprar

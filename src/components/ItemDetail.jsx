@@ -15,6 +15,8 @@ const ItemDetail = ({ dataDetail }) => {
     const [availableStock, setAvailableStock] = useState('');
     const [arrayStock, setArrayStock] = useState(itemCartStock(dataDetail.id));
     const [itemAdd, setItemAdd] = useState(false);
+    const validateStock = dataDetail.stock || [];
+    const totalStock = validateStock.reduce((acc, item) => acc + item.quantity, 0);
 
     const onAddStock = (quantity) => {
         if (arrayStock.length === 0) {
@@ -99,29 +101,37 @@ const ItemDetail = ({ dataDetail }) => {
 
                             <Card.Text className="mb-2">Temporada: {dataDetail.season}</Card.Text>
                             <Card.Text className="mb-2 small text-muted">{dataDetail.category}</Card.Text>
-                            <Card.Text className="mb-2">Seleccionar Talle </Card.Text>
 
-                            <SizesList data={dataDetail.stock} select={selectSize} selected={size} />
-                            <Card.Text className="mb-0 small text-muted">Stock {availableStock}</Card.Text>
-
-                            {!itemAdd ?
+                            {!validateStock.length || totalStock === 0 ?
                                 <>
-                                    <ItemCount stock={availableStock} onAdd={onAddStock} sizeSelect={size} />
-                                    <ItemSizesList data={arrayStock} handleDelete={onDeleteSize} typeFlex={"flex-wrap"}></ItemSizesList>
-                                    <Row className='d-flex justify-content-between mt-3'>
-                                        <Col>
-                                            <Button className='btn btn-dark' onClick={onAddItem} disabled={arrayStock.length === 0}>Confirmar</Button>
-                                        </Col>
-                                        <Col>
-                                            <Button className='btn-delete' onClick={() => onDelete(dataDetail.id)} disabled={arrayStock.length === 0}>Eliminar</Button>
-                                        </Col>
-                                    </Row>
+                                    <h4 className="fw-bold">No hay stock para esta camiseta</h4>
+                                    <NavLink to="/" className="btn btn-dark">Volver al menu</NavLink>
                                 </>
                                 :
                                 <>
-                                    <NavLink className='btn btn-dark mt-2 ' to="/cart">
-                                        Ir al Carrito
-                                    </NavLink>
+                                    <Card.Text className="mb-2">Seleccionar Talle </Card.Text>
+                                    <SizesList data={dataDetail.stock} select={selectSize} selected={size} />
+                                    <Card.Text className="mb-0 small text-muted">Stock {availableStock}</Card.Text>
+
+                                    {!itemAdd ?
+                                        <>
+                                            <ItemCount stock={availableStock} onAdd={onAddStock} sizeSelect={size} />
+                                            <ItemSizesList data={arrayStock} handleDelete={onDeleteSize} typeFlex={"flex-wrap"}></ItemSizesList>
+                                            <Row className='d-flex justify-content-start gap-2 mt-3'>
+                                                <Col>
+                                                    <Button className='btn btn-dark' onClick={onAddItem} disabled={arrayStock.length === 0}>Confirmar</Button>
+                                                </Col>
+                                                <Col>
+                                                    <Button className='btn-delete' onClick={() => onDelete(dataDetail.id)} disabled={arrayStock.length === 0}>Eliminar</Button>
+                                                </Col>
+                                            </Row>
+                                        </>
+                                        :
+                                        <div className='d-flex justify-content-start gap-2 mt-3'>
+                                            <NavLink className='btn btn-dark' to="/cart"> Ir al Carrito</NavLink>
+                                            <NavLink to="/" className="btn btn-primary">Volver al menu</NavLink>
+                                        </div>
+                                    }
                                 </>
                             }
 
