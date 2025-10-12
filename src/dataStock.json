@@ -1,112 +1,213 @@
 [
     {
-        "id": 1,
-        "nombre": "San lorenzo",
-        "precio": 120000,
-        "temporada": "24/25",
-        "img": "public/images/san-lorenzo-2025.webp",
-        "categoria": "Local",
-        "oferta": false,
-        "porcDesc": 0,
-        "stock": 20
+        "id": "8VjMXYfZ9Y9nBUc3qWmx",
+        "discPerc": 0.9,
+        "price": 125000,
+        "category": "Selecciones",
+        "stock": [
+            {
+                "quantity": 7,
+                "size": "S"
+            },
+            {
+                "size": "M",
+                "quantity": 18
+            },
+            {
+                "size": "XL",
+                "quantity": 13
+            }
+        ],
+        "season": "1994",
+        "onSale": true,
+        "img": "/images/argentina-suplente-1994.webp",
+        "name": "Argentina '94"
     },
     {
-        "id": 2,
-        "nombre": "Liverpool",
-        "precio": 120000,
-        "temporada": "18/19",
-        "img": "public/images/liverpool-2018.webp",
-        "categoria": "Internacional",
-        "oferta": true,
-        "porcDesc": 0.8,
-        "stock": 20
+        "id": "AQXCnE6Gd6iD7JFV6kgm",
+        "stock": [
+            {
+                "quantity": 12,
+                "size": "M"
+            },
+            {
+                "size": "X",
+                "quantity": 14
+            },
+            {
+                "quantity": 20,
+                "size": "XL"
+            }
+        ],
+        "name": "Brasil '02",
+        "category": "Selecciones",
+        "img": "/images/brasil-2002.webp",
+        "season": "2002",
+        "onSale": true,
+        "discPerc": 0.8,
+        "price": 130000
     },
     {
-        "id": 3,
-        "nombre": "Argentina",
-        "precio": 150000,
-        "temporada": "2022",
-        "img": "public/images/argentina-2022.webp",
-        "categoria": "Selecciones",
-        "oferta": false,
-        "porcDesc": 0,
-        "stock": 20
+        "id": "BlF81wrMZ0s265vW3khv",
+        "price": 120000,
+        "discPerc": 0,
+        "onSale": false,
+        "name": "San lorenzo",
+        "season": "24/25",
+        "img": "/images/san-lorenzo-2025.webp",
+        "category": "Local",
+        "stock": [
+            {
+                "quantity": 14,
+                "size": "S"
+            },
+            {
+                "size": "M",
+                "quantity": 13
+            },
+            {
+                "quantity": 17,
+                "size": "X"
+            },
+            {
+                "size": "XL",
+                "quantity": 11
+            }
+        ]
     },
     {
-        "id": 4,
-        "nombre": "Brasil '02",
-        "precio": 130000,
-        "temporada": "2002",
-        "img": "public/images/brasil-2002.webp",
-        "categoria": "Selecciones",
-        "oferta": true,
-        "porcDesc": 0.8,
-        "stock": 20
+        "id": "H4baoHfTNnF6AnMcyeVk",
+        "category": "Local",
+        "season": "24/25",
+        "name": "Independiente",
+        "discPerc": 0,
+        "img": "/images/independiente-2025.webp",
+        "price": 145000,
+        "onSale": false,
+        "stock": [
+            {
+                "quantity": 16,
+                "size": "S"
+            },
+            {
+                "quantity": 16,
+                "size": "M"
+            },
+            {
+                "size": "X",
+                "quantity": 16
+            }
+        ]
     },
     {
-        "id": 5,
-        "nombre": "River",
-        "precio": 170000,
-        "temporada": "24/25",
-        "img": "public/images/river-alt-2025.webp",
-        "categoria": "Local",
-        "oferta": false,
-        "porcDesc": 0,
-        "stock": 20
+        "id": "IypuNUWhznUpXaWwjnuC",
+        "discPerc": 0,
+        "stock": [
+            {
+                "quantity": 10,
+                "size": "S"
+            },
+            {
+                "quantity": 16,
+                "size": "M"
+            },
+            {
+                "quantity": 20,
+                "size": "X"
+            },
+            {
+                "size": "XL",
+                "quantity": 20
+            }
+        ],
+        "name": "Boca",
+        "img": "/images/boca-2025.webp",
+        "price": 165000,
+        "category": "Local",
+        "season": "24/25",
+        "onSale": false
     },
     {
-        "id": 6,
-        "nombre": "Manchester United",
-        "precio": 115000,
-        "temporada": "2008",
-        "img": "public/images/manchester-united-2008.webp",
-        "categoria": "Internacional",
-        "oferta": false,
-        "porcDesc": 0,
-        "stock": 20
+        "id": "LogbSg1CT3McWa2oXB70",
+        "season": "18/19",
+        "price": 120000,
+        "discPerc": 0.8,
+        "stock": [
+            {
+                "quantity": 11,
+                "size": "S"
+            },
+            {
+                "quantity": 15,
+                "size": "M"
+            }
+        ],
+        "category": "Internacional",
+        "img": "/images/liverpool-2018.webp",
+        "onSale": true,
+        "name": "Liverpool"
     },
     {
-        "id": 7,
-        "nombre": "Argentina '94",
-        "precio": 125000,
-        "temporada": "1994",
-        "img": "public/images/argentina-suplente-1994.webp",
-        "categoria": "Selecciones",
-        "oferta": true,
-        "porcDesc": 0.9,
-        "stock": 20
+        "id": "R5TuCYGr6NfASdffRam6",
+        "category": "Selecciones",
+        "name": "Argentina",
+        "season": "2022",
+        "img": "/images/argentina-2022.webp",
+        "stock": [
+            {
+                "quantity": 9,
+                "size": "M"
+            },
+            {
+                "size": "X",
+                "quantity": 19
+            }
+        ],
+        "onSale": false,
+        "discPerc": 0,
+        "price": 150000
     },
     {
-        "id": 8,
-        "nombre": "Boca",
-        "precio": 165000,
-        "temporada": "24/25",
-        "img": "public/images/boca-2025.webp",
-        "categoria": "Local",
-        "oferta": false,
-        "porcDesc": 0,
-        "stock": 20
+        "id": "Yn3BlnGsd1EPwSWkJVeJ",
+        "price": 115000,
+        "stock": [
+            {
+                "quantity": 6,
+                "size": "S"
+            }
+        ],
+        "season": "2008",
+        "category": "Internacional",
+        "discPerc": 0,
+        "onSale": false,
+        "name": "Manchester United",
+        "img": "/images/manchester-united-2008.webp"
     },
     {
-        "id": 9,
-        "nombre": "Milan '06",
-        "precio": 125000,
-        "temporada": "2006",
-        "img": "public/images/milan-2006.webp",
-        "categoria": "Internacional",
-        "oferta": true,
-        "porcDesc": 0.75,
-        "stock": 20
+        "id": "anHaZH90IHLqpKNLJYkN",
+        "discPerc": 0.75,
+        "img": "/images/milan-2006.webp",
+        "price": 125000,
+        "name": "Milan '06",
+        "category": "Internacional",
+        "onSale": true,
+        "stock": [],
+        "season": "2006"
     },
     {
-        "id": 10,
-        "nombre": "Independiente",
-        "precio": 125000,
-        "temporada": "24/25",
-        "img": "public/images/independiente-2025.webp",
-        "categoria": "Local",
-        "oferta": false,
-        "porcDesc": 0,
-        "stock": 20
+        "id": "gtzcJzBMAEQFZiNR2lMm",
+        "price": 170000,
+        "img": "/images/river-alt-2025.webp",
+        "category": "Local",
+        "name": "River",
+        "season": "24/25",
+        "discPerc": 0,
+        "onSale": false,
+        "stock": [
+            {
+                "quantity": 14,
+                "size": "M"
+            }
+        ]
     }
 ]

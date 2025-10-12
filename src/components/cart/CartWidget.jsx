@@ -10,7 +10,7 @@ const CartWidget = () => {
     return (
         <div>
             <Link to="/cart">
-                <FaShoppingCart className="iconCard" />
+                <FaShoppingCart className="iconCard" data-testid="cart-icon"/>
             </Link>
             <Badge pill bg="primary">{cartCount}</Badge>
         </div>
