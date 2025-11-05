@@ -3,6 +3,7 @@ import ItemSizesList from "../sizes/ItemSizesList";
 import { CartContext } from "../../context/CartContext";
 import { useContext, useState } from 'react'
 import Swal from 'sweetalert2'
+import { motion } from 'framer-motion';
 
 const ItemCart = ({ data }) => {
     const [boxShadow, setBoxShadow] = useState('');
@@ -38,46 +39,52 @@ const ItemCart = ({ data }) => {
     };
 
     return (
-        <Row className="d-flex align-items-start mb-3 mx-0 px-3 border rounded p-2 itemCart"
-            style={{
-                boxShadow: boxShadow,
-                transition: 'box-shadow 0.3s ease, transform 0.3s ease',
-            }}
-            onMouseOver={handleHover}
-            onMouseLeave={handleLeave}
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
         >
-            <Col xs={5} md={4} className="p-0">
-                <Image src={data.img} alt={data.name} rounded className="itemCartImg"/>
-            </Col>
-            <Col xs={4} md={5} className="d-flex flex-column align-items-center justify-content-between  my-auto">
-                <span className="nameShirtItemCart">{data.name}</span>
-                <ItemSizesList data={data.selectStock} handleDelete={onDeleteSize} typeFlex={"flex-column"}></ItemSizesList>
-            </Col>
-            <Col xs={3} md={3} className="d-flex justify-content-center align-items-center flex-column my-auto">
+            <Row className="d-flex align-items-start mb-3 mx-0 px-3 border rounded p-2 itemCart"
+                style={{
+                    boxShadow: boxShadow,
+                    transition: 'box-shadow 0.3s ease, transform 0.3s ease',
+                }}
+                onMouseOver={handleHover}
+                onMouseLeave={handleLeave}
+            >
+                <Col xs={5} md={4} className="p-0">
+                    <Image src={data.img} alt={data.name} rounded className="itemCartImg" />
+                </Col>
+                <Col xs={4} md={5} className="d-flex flex-column align-items-center justify-content-between  my-auto">
+                    <span className="nameShirtItemCart">{data.name}</span>
+                    <ItemSizesList data={data.selectStock} handleDelete={onDeleteSize} typeFlex={"flex-column"}></ItemSizesList>
+                </Col>
+                <Col xs={3} md={3} className="d-flex justify-content-center align-items-center flex-column my-auto">
 
-                {data.onSale && (
-                    <span className="text-decoration-line-through text-muted p-0 m-0 small">
-                        ${unitInitialPrice}
+                    {data.onSale && (
+                        <span className="text-decoration-line-through text-muted p-0 m-0 small">
+                            ${unitInitialPrice}
+                        </span>
+                    )}
+                    <span className="p-0 m-0 mb-1 text-muted small">
+                        ${unitFinalPrice}
                     </span>
-                )}
-                <span className="p-0 m-0 mb-1 text-muted small">
-                    ${unitFinalPrice}
-                </span>
 
-                {data.onSale && (
-                    <span className="text-decoration-line-through m-0 priceTextItemCart">
-                        ${initialPrice}
+                    {data.onSale && (
+                        <span className="text-decoration-line-through m-0 priceTextItemCart">
+                            ${initialPrice}
+                        </span>
+                    )}
+                    <span className={data.onSale ? "text-danger p-0 m-0 priceTextItemCart" : "p-0 m-0 priceTextItemCart"}>
+                        ${finalPrice}
                     </span>
-                )}
-                <span className={data.onSale ? "text-danger p-0 m-0 priceTextItemCart" : "p-0 m-0 priceTextItemCart"}>
-                    ${finalPrice}
-                </span>
 
-                <Button className="mt-2 btn-delete" size="xm" onClick={() => onDelete(data.id)}>
-                    Eliminar
-                </Button>
-            </Col>
-        </Row>
+                    <Button className="mt-2 btn-delete" size="xm" onClick={() => onDelete(data.id)}>
+                        Eliminar
+                    </Button>
+                </Col>
+            </Row>
+        </motion.div>
     );
 };
 
