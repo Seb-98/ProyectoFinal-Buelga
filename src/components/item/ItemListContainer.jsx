@@ -5,10 +5,12 @@ import { useParams } from 'react-router-dom'
 import Loader from '../Loader';
 import { db } from '../../service/firebase';
 import { collection, getDocs, query, where } from "firebase/firestore";
+import ItemFilter from './itemFilter';
 
 const ItemListContainer = () => {
     const { category } = useParams();
-    const [data, setData] = useState([])
+    const [allProducts, setAllProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -33,7 +35,8 @@ const ItemListContainer = () => {
                         ...item.data()
                     }
                 })
-                setData(dataList);
+                setAllProducts(dataList);
+                setFilteredProducts(dataList);
             })
             .catch((error) => {
                 console.error("Error al traer coleccion: " + error)
@@ -49,9 +52,12 @@ const ItemListContainer = () => {
 
     return (
         <Container>
-            <ItemList dataItemList={data} />
+            <ItemFilter
+                originalData={allProducts}
+                setFilterData={setFilteredProducts}
+            />
+            <ItemList dataItemList={filteredProducts} />
         </Container>
-    )
-}
-
+    );
+};
 export default ItemListContainer;
