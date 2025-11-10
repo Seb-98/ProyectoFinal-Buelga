@@ -7,7 +7,7 @@
 Clonar el proyecto
 
 ```bash
-git clone https://github.com/Seb-98/ProyectoFinal-Buelga
+git clone https://github.com/Seb-98/GoalStreet-React
 ```
 
 Ir al directorio del proyecto
