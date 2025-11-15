@@ -1,40 +1,26 @@
 import { Card } from 'react-bootstrap';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 
 function Item({ dataShirt }) {
-    const [boxShadow, setBoxShadow] = useState('');
 
     const initialPrice = dataShirt.price;
     const finalPrice = dataShirt.onSale ? initialPrice * dataShirt.discPerc : initialPrice;
-
-    const handleHover = () => {
-        setBoxShadow('0 8px 20px rgba(0, 0, 0, 0.55)');
-    }
-
-    const handleLeave = () => {
-        setBoxShadow('');
-    };
 
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            whileHover={{ scale: 1.03 }}
+            whileHover={{
+                scale: 1.03,
+                boxShadow: "0 8px 20px rgba(0, 0, 0, 0.55)"
+            }}
             whileTap={{ scale: 0.98 }}
             style={{ width: '15rem' }}
         >
-            <Card
-                style={{
-                    width: '15rem',
-                    boxShadow: boxShadow,
-                    transition: 'box-shadow 0.3s ease, transform 0.3s ease',
-                }}
-                onMouseOver={handleHover}
-                onMouseLeave={handleLeave}>
+            <Card style={{ width: '15rem',}}>
                 <Card.Img variant="top" src={dataShirt.img} alt={dataShirt.name} />
                 <Card.Body>
                     <Card.Title>{dataShirt.name}</Card.Title>

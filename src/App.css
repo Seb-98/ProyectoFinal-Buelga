@@ -1,6 +1,18 @@
 .itemCart {
     width: 650px;
-    height: 220px;
+    height: 200px;
+}
+
+.itemCartWrapper {
+    display: inline-block;
+    overflow: visible;
+}
+
+.itemCartImg {
+    width: 100%;
+    height: auto;
+    max-height: 180px;
+    object-fit: contain;
 }
 
 .itemSizeList {
@@ -57,7 +69,13 @@
 
 @media (max-width: 768px) {
     .itemCart {
-        height: 160px;
+        width: 100% !important;
+        height: auto;
+        padding: 10px !important;
+    }
+
+    .itemCartImg {
+        max-height: 120px;
     }
 
     .itemCartImg {
