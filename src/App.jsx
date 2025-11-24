@@ -8,12 +8,15 @@ import ItemDetailContainer from './components/item/ItemDetailContainer';
 import CartProvider from './context/CartContext';
 import CartContainer from './components/cart/CartContainer';
 import CheckoutContainer from './components/checkout/CheckoutContainer';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 function App() {
 
   return (
     <BrowserRouter>
       <CartProvider>
+        <Provider store={store}>
         <ContainerPage>
           <Routes>
             <Route path="/" element={<ItemListContainer />} />
@@ -24,6 +27,7 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </ContainerPage>
+        </Provider>
       </CartProvider>
     </BrowserRouter>
   )

@@ -1,12 +1,15 @@
-import { useContext } from "react";
 import { Container } from "react-bootstrap";
-import { CartContext } from "../../context/CartContext";
 import ItemCartList from "./ItemCartList";
 import SectionButtonsCart from "./SectionButtonsCart";
 import EmptyCart from "./EmptyCart";
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCart, selectTotalCart } from "../../redux/cart/cartSelectors";
+import { deleteCart } from '../../redux/cart/cartSlice';
 
 const CartContainer = () => {
-    const { cart, totalCart, clearCart } = useContext(CartContext);
+    const dispatch = useDispatch();
+    const cart = useSelector(selectCart);
+    const totalCart = useSelector(selectTotalCart)
 
     if (cart.length === 0) {
         return <EmptyCart />;
@@ -18,7 +21,7 @@ const CartContainer = () => {
                 <h4 className="mb-0">Total ${totalCart}</h4>
             </div>
             <ItemCartList dataCartList={cart} />
-            <SectionButtonsCart handleDeleteCart={clearCart} />
+            <SectionButtonsCart handleDeleteCart={() => dispatch(deleteCart())} />
         </Container>
     );
 }

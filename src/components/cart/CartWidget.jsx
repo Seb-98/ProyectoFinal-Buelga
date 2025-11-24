@@ -1,11 +1,11 @@
 import { FaShoppingCart } from "react-icons/fa";
 import Badge from 'react-bootstrap/Badge';
-import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux'
+import { selectCartCount } from "../../redux/cart/cartSelectors";
 
 const CartWidget = () => {
-    const { cartCount } = useContext(CartContext);
+    const cartCount = useSelector(selectCartCount);
 
     return (
         <div>

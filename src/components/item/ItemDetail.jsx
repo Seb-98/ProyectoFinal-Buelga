@@ -1,20 +1,27 @@
 import { Container, Card, Row, Col, Button } from 'react-bootstrap';
 import ItemCount from './ItemCount';
-import { useContext, useState } from 'react';
-import { CartContext } from '../../context/CartContext';
+import { useState } from 'react';
 import SizesList from '../sizes/SizesList';
 import ItemSizesList from '../sizes/ItemSizesList';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import { motion } from 'framer-motion';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItemCart, deleteItemCart } from '../../redux/cart/cartSlice';
+import { selectItemStock } from "../../redux/cart/cartSelectors";
 
 const ItemDetail = ({ dataDetail }) => {
+    const dispatch = useDispatch();
     const initialPrice = dataDetail.price;
     const finalPrice = dataDetail.onSale ? initialPrice * dataDetail.discPerc : initialPrice;
-    const { addItemCart, deleteItemCart, itemCartStock } = useContext(CartContext);
     const [size, setSize] = useState('');
     const [availableStock, setAvailableStock] = useState('');
-    const [arrayStock, setArrayStock] = useState(itemCartStock(dataDetail.id));
+
+    const itemStockInCart = useSelector(state => 
+        selectItemStock(state, dataDetail.id)
+    );
+    const [arrayStock, setArrayStock] = useState(itemStockInCart);
+
     const [itemAdd, setItemAdd] = useState(false);
     const validateStock = dataDetail.stock || [];
     const totalStock = validateStock.reduce((acc, item) => acc + item.quantity, 0);
@@ -37,7 +44,7 @@ const ItemDetail = ({ dataDetail }) => {
 
     const onAddItem = () => {
         setItemAdd(true);
-        addItemCart(dataDetail, arrayStock);
+        dispatch(addItemCart({ item: dataDetail, selectStock: arrayStock }));
 
         Swal.fire({
             title: "Camiseta agregada!",
@@ -61,7 +68,7 @@ const ItemDetail = ({ dataDetail }) => {
             confirmButtonText: "Eliminar",
         }).then((result) => {
             if (result.isConfirmed) {
-                deleteItemCart(id);
+                dispatch(deleteItemCart(id));
                 setArrayStock([])
             }
         });
